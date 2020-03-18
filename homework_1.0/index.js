@@ -5,6 +5,10 @@ const defaultData = {
   defaultResponse: { status: "ok" },
   logs: []
 };
+const sendResponse = (content, response) => {
+  response.writeHead(200, { "Content-type": "application/json" });
+  response.end(JSON.stringify(content));
+};
 
 fs.existsSync("serverData.json") ||
   fs.writeFileSync("serverData.json", JSON.stringify(defaultData));
@@ -12,21 +16,28 @@ fs.existsSync("serverData.json") ||
 http
   .createServer((request, response) => {
     const serverData = JSON.parse(fs.readFileSync("serverData.json")),
-      { logs, defaultResponse } = serverData;
+      { logs, defaultResponse } = serverData,
+      { method, url, headers } = request;
 
     logs.push({
-      method: request.method,
-      url: request.url,
+      method,
+      url,
       time: new Date().getTime()
     });
 
     fs.writeFileSync("serverData.json", JSON.stringify(serverData));
 
-    const respDefault = JSON.stringify(defaultResponse);
-    const respLog =
-      request.headers["show-logs"] && respDefault + "\n" + JSON.stringify(logs);
+    if (url.includes("date")) {
+      const filterDate = url.match(/date=([\/*\d+\/*]+)/)[1];
+      const filtredLogs = logs.filter(
+        e => new Date(e.time).toLocaleDateString("en-US") === filterDate
+      );
 
-    response.writeHead(200, { "Content-type": "application/json" });
-    response.end(respLog || respDefault);
+      sendResponse(filtredLogs, response);
+    }
+
+    const fullLogs = headers["show-logs"] && [defaultResponse, logs];
+
+    sendResponse(fullLogs || defaultResponse, response);
   })
   .listen(3030);
