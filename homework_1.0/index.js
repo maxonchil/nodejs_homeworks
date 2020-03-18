@@ -5,9 +5,31 @@ const defaultData = {
   defaultResponse: { status: "ok" },
   logs: []
 };
-const sendResponse = (content, response) => {
-  response.writeHead(200, { "Content-type": "application/json" });
-  response.end(JSON.stringify(content));
+
+const parseURL = url => {
+  let paramsString = url.split("?")[1];
+  if (paramsString) {
+    return paramsString.split("&").reduce((acc, element) => {
+      const [key, value] = element.split("=");
+      acc[key] = value;
+      return acc;
+    }, {});
+  }
+  return {};
+};
+
+const getLogs = (logs, queryParams) => {
+  let result = logs;
+  if (queryParams.start && queryParams.end) {
+    result = logs.filter(
+      ({ time }) => time <= queryParams.end && time >= queryParams.start
+    );
+  } else if (queryParams.start) {
+    result = logs.filter(({ time }) => time >= queryParams.start);
+  } else if (queryParams.end) {
+    result = logs.filter(({ time }) => time <= queryParams.end);
+  }
+  return result;
 };
 
 fs.existsSync("serverData.json") ||
@@ -15,9 +37,10 @@ fs.existsSync("serverData.json") ||
 
 http
   .createServer((request, response) => {
-    const serverData = JSON.parse(fs.readFileSync("serverData.json")),
-      { logs, defaultResponse } = serverData,
-      { method, url, headers } = request;
+    const serverData = JSON.parse(fs.readFileSync("serverData.json"));
+    const { logs, defaultResponse } = serverData;
+    const { method, url } = request;
+    const responseBody = defaultResponse;
 
     logs.push({
       method,
@@ -26,18 +49,11 @@ http
     });
 
     fs.writeFileSync("serverData.json", JSON.stringify(serverData));
-
-    if (url.includes("date")) {
-      const filterDate = url.match(/date=([\/*\d+\/*]+)/)[1];
-      const filtredLogs = logs.filter(
-        e => new Date(e.time).toLocaleDateString("en-US") === filterDate
-      );
-
-      sendResponse(filtredLogs, response);
+    response.writeHead(200, { "Content-type": "application/json" });
+    if (method === "GET" && url.split("?")[0] === "/logs") {
+      responseBody.logs = getLogs(logs, parseURL(url));
     }
 
-    const fullLogs = headers["show-logs"] && [defaultResponse, logs];
-
-    sendResponse(fullLogs || defaultResponse, response);
+    response.end(JSON.stringify(responseBody));
   })
   .listen(3030);
