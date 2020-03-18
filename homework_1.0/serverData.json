@@ -1,9 +1,1 @@
-{
-  "defaultResponse": { "status": "ok" },
-  "logs": [
-    { "method": "GET", "url": "/", "time": 1584460340743 },
-    { "method": "GET", "url": "/favicon.ico", "time": 1584460341246 },
-    { "method": "GET", "url": "/", "time": 1584460360271 },
-    { "method": "GET", "url": "/favicon.ico", "time": 1584460360322 }
-  ]
-}
+{"defaultResponse":{"status":"ok"},"logs":[{"method":"GET","url":"/","time":1584527656633},{"method":"GET","url":"/","time":1584527703004},{"method":"GET","url":"/","time":1584527721992},{"method":"GET","url":"/","time":1584527740842},{"method":"GET","url":"/","time":1584527998737},{"method":"GET","url":"/","time":1584528019149},{"method":"GET","url":"/","time":1584528610911},{"method":"GET","url":"/","time":1584528615868},{"method":"GET","url":"/","time":1584528624964}]}

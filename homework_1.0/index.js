@@ -6,13 +6,12 @@ const defaultData = {
   logs: []
 };
 
-fs.existsSync("serverData.json")
-  ? true
-  : fs.writeFileSync("serverData.json", JSON.stringify(defaultData));
+fs.existsSync("serverData.json") ||
+  fs.writeFileSync("serverData.json", JSON.stringify(defaultData));
 
 http
   .createServer((request, response) => {
-    let serverData = JSON.parse(fs.readFileSync("serverData.json")),
+    const serverData = JSON.parse(fs.readFileSync("serverData.json")),
       { logs, defaultResponse } = serverData;
 
     logs.push({
@@ -23,7 +22,11 @@ http
 
     fs.writeFileSync("serverData.json", JSON.stringify(serverData));
 
+    const respDefault = JSON.stringify(defaultResponse);
+    const respLog =
+      request.headers["show-logs"] && respDefault + "\n" + JSON.stringify(logs);
+
     response.writeHead(200, { "Content-type": "application/json" });
-    response.end(JSON.stringify(defaultResponse));
+    response.end(respLog || respDefault);
   })
   .listen(3030);
