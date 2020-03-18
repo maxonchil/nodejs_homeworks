@@ -1,0 +1,9 @@
+{
+  "defaultResponse": { "status": "ok" },
+  "logs": [
+    { "method": "GET", "url": "/", "time": 1584460340743 },
+    { "method": "GET", "url": "/favicon.ico", "time": 1584460341246 },
+    { "method": "GET", "url": "/", "time": 1584460360271 },
+    { "method": "GET", "url": "/favicon.ico", "time": 1584460360322 }
+  ]
+}
