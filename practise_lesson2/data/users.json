@@ -1,0 +1,59 @@
+{
+  "users": [
+    { "name": "Max", "username": "Maxonchil", "password": "taz123", "id": 1 },
+    {
+      "name": "Anton",
+      "username": "Antonchan",
+      "password": "toxic228",
+      "id": 2
+    },
+    {
+      "name": "SerGei",
+      "username": "yaserGei223",
+      "password": "takijedela123",
+      "id": 3
+    },
+    {
+      "name": "Andriano",
+      "username": "Chelentano",
+      "password": "lashatemicantaro111",
+      "id": 4
+    },
+    {
+      "name": "Saitama",
+      "username": "onapunchman",
+      "password": "lvlchero",
+      "id": 5
+    },
+    {
+      "name": "Mihail",
+      "username": "Michalich",
+      "password": "mich1232",
+      "id": 6
+    },
+    {
+      "name": "Takieshi",
+      "username": "kocach",
+      "password": "tkfromling",
+      "id": 7
+    },
+    {
+      "name": "Takieshi",
+      "username": "kocach",
+      "password": "tkfromling",
+      "id": 8
+    },
+    {
+      "name": "Takieshi",
+      "username": "kocach",
+      "password": "tkfromling",
+      "id": 9
+    },
+    { "username": "Maxonchil", "password": "taz123", "id": 10 },
+    { "name": "Ivan", "username": "Kioto", "password": "Tokio", "id": 11 },
+    { "name": "Ivan", "username": "Kioto", "password": "Tokio", "id": 12 },
+    { "name": "Ivan", "username": "Kioto", "password": "Tokio", "id": 13 },
+    { "name": "Ivan", "username": "Kioto", "password": "Tokio", "id": 14 },
+    { "username": "Kioto", "password": "Tokio", "id": 15 }
+  ]
+}
