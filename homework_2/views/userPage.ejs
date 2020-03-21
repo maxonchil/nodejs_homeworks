@@ -1,0 +1,98 @@
+<form class="add-note form">
+  <h2>Add new Note</h2>
+  <input placeholder="Title" class="add-note__title" type="text" />
+  <input placeholder="Description" class="add-note__description" type="text" />
+  <button type="submit" class="add-note__button button">Add note</button>
+</form>
+<p>Total count of notes:<%= user.notes.length %></p>
+
+<div class="user">
+  <div class="user__info">
+    <div class="user__name">User name: <%= user.name %></div>
+    <div class="user__login">User login: <%= user.username %></div>
+    <div class="user__status">User status: <%= user.status %></div>
+  </div>
+  <ul class="user__notes note">
+    <% user.notes.forEach(function(note) {%>
+    <li class="note__item">
+      <div class="note__title"><%= note.title %></div>
+      <div class="note__description">
+        <%= note.description %>
+      </div>
+      <%if(note.status) {%>
+      <input class="note__status" checked type="checkbox" />
+      <%}else {%>
+      <input class="note__status" type="checkbox" />
+      <% }%>
+      <input
+        type="submit"
+        class="note__delete-button button"
+        value="Delete note"
+      />
+    </li>
+    <% })%>
+  </ul>
+</div>
+
+<script>
+  const add_btn = document.querySelector(".add-note__button");
+  add_btn.addEventListener("click", addNote);
+
+  const delete_btn = document.querySelectorAll(".note__delete-button");
+  delete_btn.forEach(elem => elem.addEventListener("click", deleteNote));
+
+  const status_checkbox = document.querySelectorAll(".note__status");
+  status_checkbox.forEach(elem => elem.addEventListener("click", changeStatus));
+
+  const getTile = element => {
+    return element.parentNode.children[0].innerText;
+  };
+
+  async function deleteNote(event) {
+    const title = getTile(event.target);
+    const require = await fetch(location.href, {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        add: false
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    window.location.href = window.location.href;
+  }
+  async function addNote() {
+    const title = document.querySelector(".add-note__title").value;
+    const description = document.querySelector(".add-note__description").value;
+    const require = await fetch(location.href, {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        description,
+        status: false,
+        add: true
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    window.location = window.location;
+  }
+
+  async function changeStatus(event) {
+    const status = event.target.checked;
+    const title = getTile(event.target);
+    const require = await fetch(location.href, {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        status,
+        changeStatus: true
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+</script>

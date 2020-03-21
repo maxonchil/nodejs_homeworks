@@ -1,0 +1,42 @@
+<%if(loginError) {%>
+<h2>Can not find such user...</h2>
+<a href="/login">Back to login</a>
+<%}else {%>
+<form class="login form">
+  <input name="logUserName" class="login__username" />
+  <input name="logUserPass" type="password" class="login__password" />
+  <a class="login__link"
+    ><button type="button" class="login__button">Submit</button></a
+  >
+</form>
+<% }%>
+<script>
+  const btn = document.querySelector(".login__button");
+
+  btn.addEventListener("click", handle);
+  async function handle() {
+    const logUserName = document.getElementsByClassName("login__username")[0]
+      .value;
+    const logUserPass = document.getElementsByClassName("login__password")[0]
+      .value;
+    const resposnse = await fetch("http://localhost:3030/login", {
+      method: "POST",
+      body: JSON.stringify({
+        logUserName,
+        logUserPass
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const { user } = await resposnse.json();
+ 
+    if (user) {
+      location.href = `http://localhost:3030/user/${user.id}`;
+    } else {
+      location.href = "http://localhost:3030/login/failed";
+      throw new Error();
+      return;
+    }
+  }
+</script>
