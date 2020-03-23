@@ -17,17 +17,21 @@ router.post("/", (req, res) => {
       username === logUserName && password === logUserPass
   );
 
-  if (!user) {
-    return res.status(404).json({ status: "No such user" });
+  try {
+    const { name, username, password, id } = user;
+    const token = jwt.sign({ name, username, password, id }, "secret");
+    res.cookie("JWT", token);
+    res.status(200).json({ user });
+  } catch (err) {
+    console.log(err.name);
+    res.status(307).json({ status: "Login failed" });
+    throw err;
   }
-  
-  res.cookie("JWT", jwt.sign(user, "secret"));
-  res.status(200).json({ user });
 });
 
 router.get("/failed", (req, res) => {
   res
-    .status(200)
+    .status(401)
     .render("index", { home: false, login: true, loginError: true });
 });
 module.exports = router;

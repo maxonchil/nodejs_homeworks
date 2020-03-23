@@ -5,19 +5,20 @@ const { users } = require("../../data/users.json");
 module.exports = addNote = (req, res, next) => {
   const { title, description, status, add } = req.body;
 
-  if (add) {
-    const logedUserId = Number(req.params.id);
-    const { notes } = users.find(({ id }) => id === logedUserId);
+  const logedUserId = Number(req.params.id);
+  const user = users.find(({ id }) => id === logedUserId);
+  const { notes } = user;
 
-    try {
-      notes.push({ title, description, status });
-      fs.writeFileSync("./data/users.json", JSON.stringify({ users }));
-    } catch (err) {
-      console.log(err.name);
-      throw err;
-    }
-
-    return;
+  try {
+    notes.push({ title, description, status });
+    fs.writeFileSync("./data/users.json", JSON.stringify({ users }));
+  } catch (err) {
+    res.status(304);
+    console.log(err.name);
+    throw err;
   }
-  next();
+
+  res
+    .status(200)
+    .render("index", { home: false, login: true, loginError: false, user });
 };

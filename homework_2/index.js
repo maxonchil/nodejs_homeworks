@@ -6,6 +6,8 @@ const usersRouter = require("./api/routes/users");
 
 app.set("view engine", "ejs");
 
+app.use("/scripts", express.static("scripts"));
+
 app.use(express.static("api"));
 
 app.use(express.json());

@@ -12,8 +12,10 @@
   "author": "Maksym Koval <maksym_koval1@epam.com>",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "set-cookie-parser": "^2.4.3"
   }
 }

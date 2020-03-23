@@ -34,65 +34,7 @@
   </ul>
 </div>
 
-<script>
-  const add_btn = document.querySelector(".add-note__button");
-  add_btn.addEventListener("click", addNote);
-
-  const delete_btn = document.querySelectorAll(".note__delete-button");
-  delete_btn.forEach(elem => elem.addEventListener("click", deleteNote));
-
-  const status_checkbox = document.querySelectorAll(".note__status");
-  status_checkbox.forEach(elem => elem.addEventListener("click", changeStatus));
-
-  const getTile = element => {
-    return element.parentNode.children[0].innerText;
-  };
-
-  async function deleteNote(event) {
-    const title = getTile(event.target);
-    const require = await fetch(location.href, {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        add: false
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    window.location.href = window.location.href;
-  }
-  async function addNote() {
-    const title = document.querySelector(".add-note__title").value;
-    const description = document.querySelector(".add-note__description").value;
-    const require = await fetch(location.href, {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        description,
-        status: false,
-        add: true
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    window.location = window.location;
-  }
-
-  async function changeStatus(event) {
-    const status = event.target.checked;
-    const title = getTile(event.target);
-    const require = await fetch(location.href, {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        status,
-        changeStatus: true
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  }
-</script>
+<script src="/scripts/clearFunctions.js" type="text/javascript"></script>
+<script src="/scripts/deleteNote.js" type="text/javascript"></script>
+<script src="/scripts/addNote.js" type="text/javascript"></script>
+<script src="/scripts/changeStatus.js" type="text/javascript"></script>

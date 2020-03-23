@@ -21,6 +21,7 @@ module.exports = deleteNote = (req, res, next) => {
     removeItemFromArray(notes, removableNote);
     fs.writeFileSync("./data/users.json", JSON.stringify({ users }));
   } catch (err) {
+    res.status(304);
     console.log(err.name);
     throw err;
   }
