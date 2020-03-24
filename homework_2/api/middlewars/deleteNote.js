@@ -17,12 +17,17 @@ module.exports = deleteNote = (req, res, next) => {
   const { notes } = user;
   const removableNote = notes.find(({ title }) => title === titleToDelete);
 
+  if (user === undefined) {
+    res.status(401).json({ status: "Login failed" });
+    throw err;
+  }
+
   try {
     removeItemFromArray(notes, removableNote);
     fs.writeFileSync("./data/users.json", JSON.stringify({ users }));
   } catch (err) {
-    res.status(304);
-    console.log(err.name);
+    res.status(400);
+    console.error(err.name);
     throw err;
   }
 

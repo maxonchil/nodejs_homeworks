@@ -9,13 +9,13 @@ module.exports = changeStatus = (req, res, next) => {
   const user = users.find(({ id }) => id === logedUserId);
   const { notes } = user;
   const changedNote = notes.find(({ title }) => title === titleOfChanged);
-
+console.log(user)
   try {
     changedNote.status = newStatus;
     fs.writeFileSync("./data/users.json", JSON.stringify({ users }));
   } catch (err) {
-    res.status(304);
-    console.log(err.name);
+    res.status(400);
+    console.error(err.name);
     throw err;
   }
   res

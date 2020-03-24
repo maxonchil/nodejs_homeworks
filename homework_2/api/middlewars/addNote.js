@@ -9,12 +9,17 @@ module.exports = addNote = (req, res, next) => {
   const user = users.find(({ id }) => id === logedUserId);
   const { notes } = user;
 
+  if (user === undefined) {
+    res.status(401).json({ status: "Login failed" });
+    throw err;
+  }
+
   try {
     notes.push({ title, description, status });
     fs.writeFileSync("./data/users.json", JSON.stringify({ users }));
   } catch (err) {
-    res.status(304);
-    console.log(err.name);
+    res.status(400);
+    console.error(err.name);
     throw err;
   }
 

@@ -15,13 +15,19 @@ router.get("/:id", tokenAuth, (req, res) => {
   const logedUserId = Number(req.params.id);
   const user = users.find(({ id }) => id === logedUserId);
 
+  if (user === undefined) {
+    res.status(400);
+    console.error(err.name);
+    throw err;
+  }
+
   res
     .status(200)
     .render("index", { home: false, login: false, loginError: false, user });
 });
 
-router.put("/:id", changeSatus, (req, res) => {});
-router.delete("/:id", deleteNote, (req, res) => {});
-router.post("/:id", addNote, (req, res) => {});
+router.put("/:id", changeSatus);
+router.delete("/:id", deleteNote);
+router.post("/:id", addNote);
 
 module.exports = router;

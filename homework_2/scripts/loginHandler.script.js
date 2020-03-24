@@ -6,8 +6,8 @@ async function loginHandler() {
     .value;
   const logUserPass = document.getElementsByClassName("login__password")[0]
     .value;
-    
-  const resposnse = await fetch("http://localhost:3030/login", {
+
+  const resposnse = await fetch(loginPage, {
     method: "POST",
     body: JSON.stringify({
       logUserName,
@@ -20,9 +20,9 @@ async function loginHandler() {
   const { user } = await resposnse.json();
 
   if (resposnse.ok) {
-    location.href = `http://localhost:3030/user/${user.id}`;
+    location.href = userPage.concat(user.id);
   } else {
-    location.href = "http://localhost:3030/login/failed";
+    location.href = failPage;
     throw new Error();
   }
 }

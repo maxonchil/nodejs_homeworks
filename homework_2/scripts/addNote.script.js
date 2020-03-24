@@ -1,7 +1,6 @@
 const add_btn = document.querySelector(".add-note__button");
 add_btn.addEventListener("click", addNote);
 
-
 async function addNote() {
   const title = document.querySelector(".add-note__title").value;
   const description = document.querySelector(".add-note__description").value;
@@ -22,7 +21,7 @@ async function addNote() {
   if (response.ok) {
     window.location.href = window.location.href;
   } else {
-    console.log(response);
+    console.error(response);
     throw new Error();
   }
 }

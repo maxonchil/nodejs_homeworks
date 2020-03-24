@@ -1,15 +1,13 @@
-const status_checkbox = document.querySelectorAll(".note__status");
-status_checkbox.forEach(elem => elem.addEventListener("click", changeStatus));
+const delete_btn = document.querySelectorAll(".note__delete-button");
+delete_btn.forEach(elem => elem.addEventListener("click", deleteNote));
 
-async function changeStatus(event) {
-  const status = event.target.checked;
+async function deleteNote(event) {
   const title = getTile(event.target);
 
   const response = await fetch(location.href, {
-    method: "PUT",
+    method: "DELETE",
     body: JSON.stringify({
-      title,
-      status
+      title
     }),
     headers: {
       "Content-Type": "application/json"
@@ -19,7 +17,7 @@ async function changeStatus(event) {
   if (response.ok) {
     window.location.href = window.location.href;
   } else {
-    console.log(response);
+    console.error(response);
     throw new Error();
   }
 }
