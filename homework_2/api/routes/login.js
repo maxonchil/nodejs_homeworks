@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
 
   if (user === undefined) {
     res.status(400).json({ status: "Login failed" });
-    throw err;
+    throw new Error();
   }
 
   const { name, username, password, id } = user;

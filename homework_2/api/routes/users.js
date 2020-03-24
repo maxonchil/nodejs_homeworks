@@ -4,9 +4,9 @@ const router = express.Router();
 const { users } = require("../../data/users.json");
 
 const tokenAuth = require("../middlewars/tokenAuth");
-const addNote = require("../middlewars/addNote");
-const deleteNote = require("../middlewars/deleteNote");
-const changeSatus = require("../middlewars/changeStatus");
+const addNote = require("../requestHandlers/addNote");
+const deleteNote = require("../requestHandlers/deleteNote");
+const changeSatus = require("../requestHandlers/changeStatus");
 const cookieParser = require("cookie-parser");
 
 router.use(cookieParser());
@@ -18,7 +18,7 @@ router.get("/:id", tokenAuth, (req, res) => {
   if (user === undefined) {
     res.status(400);
     console.error(err.name);
-    throw err;
+    throw new Error();
   }
 
   res
