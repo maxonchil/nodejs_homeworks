@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const config = require("config");
+
 const writeLog = require("./api/middlewars/writeLog");
 const { port: serverPort } = config.get("webServer");
 const { protocol, host, port, name } = config.get("dataBase");
 const dbURL = `${protocol}://${host}:${port}/${name}`;
+
 
 mongoose.connect(dbURL, {
   useNewUrlParser: true

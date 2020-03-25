@@ -1,0 +1,76 @@
+<form [formGroup]="userData" class="registration">
+  <div class="registration__inputs">
+    <input class="registration__name" type="text" placeholder="Name" />
+    <input
+      [class.is-invalid]="
+        userData.get('username').invalid && userData.get('username').touched
+      "
+      class="registration__username"
+      type="text"
+      placeholder="Username"
+      formControlName="username"
+    />
+    <div
+      *ngIf="(username.invalid && username.touched) || username.dirty"
+      class="registration__error"
+    >
+      <span *ngIf="username.errors?.required" class="text-danger"
+        >Uusername is required!</span
+      >
+      <span *ngIf="username.errors?.pattern" class="text-danger"
+        >Username should be more than 5 characters length</span
+      >
+    </div>
+    <input
+      [class.is-invalid]="
+        userData.get('password').invalid && userData.get('password').touched
+      "
+      class="registration__password"
+      type="password"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <div
+      *ngIf="(password.invalid && password.touched) || password.dirty"
+      class="registration__error"
+    >
+      <span *ngIf="password.errors?.required" class="text-danger"
+        >Password is required!</span
+      >
+      <span *ngIf="password.errors?.pattern" class="text-danger"
+        >Password must contain at least one uppercase letter, one lowercase
+        letter, number and special character</span
+      >
+    </div>
+    <input
+      [class.is-invalid]="
+        userData.get('email').invalid && userData.get('email').touched
+      "
+      class="registration__email"
+      type="email"
+      placeholder="Email"
+      formControlName="email"
+    />
+    <div>
+      <div
+        *ngIf="(email.invalid && email.touched) || email.dirty"
+        class="registration__error"
+      >
+        <span *ngIf="email.errors?.required" class="text-danger"
+          >Email is required</span
+        >
+        <span *ngIf="email.errors?.pattern" class="text-danger"
+          >Please provide a valid email address</span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="registration__footer">
+    <select class="registration__select">
+      <option class="registration__option" disabled selected>Status:</option>
+      <option class="registration__option" value="Shipper">Shipper</option>
+      <option class="registration__option" value="Deliver">Deliver</option>
+    </select>
+    <button class="registration__button button">Submit</button>
+  </div>
+</form>
