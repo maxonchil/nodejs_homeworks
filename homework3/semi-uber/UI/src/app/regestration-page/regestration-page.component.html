@@ -1,6 +1,11 @@
 <form [formGroup]="userData" class="registration">
   <div class="registration__inputs">
-    <input class="registration__name" type="text" placeholder="Name" />
+    <input
+      class="registration__name"
+      type="text"
+      placeholder="Name"
+      formControlName="name"
+    />
     <input
       [class.is-invalid]="
         userData.get('username').invalid && userData.get('username').touched
@@ -66,11 +71,28 @@
     </div>
   </div>
   <div class="registration__footer">
-    <select class="registration__select">
-      <option class="registration__option" disabled selected>Status:</option>
-      <option class="registration__option" value="Shipper">Shipper</option>
-      <option class="registration__option" value="Deliver">Deliver</option>
-    </select>
-    <button class="registration__button button">Submit</button>
+    <label
+      >Driver:
+      <input
+        value="Driver"
+        formControlName="status"
+        name="status"
+        type="radio"
+      />
+    </label>
+    <label>
+      Shipper:
+      <input
+        value="Shipper"
+        formControlName="status"
+        name="status"
+        type="radio"
+      />
+    </label>
+
+    <button class="registration__button button" (click)="getRegForm()">
+      Submit
+    </button>
   </div>
 </form>
+<span class="registration__error" *ngIf="formField">All fields must be filled</span>
