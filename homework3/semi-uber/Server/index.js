@@ -23,6 +23,7 @@ app.use("../api", express.static("api"));
 app.get("/", writeLog, (req, res) => {
   User.find({}).then(user => res.json(user));
 });
+
 app.listen(serverPort, () => {
   console.log("Now listen on port ", serverPort);
 });
