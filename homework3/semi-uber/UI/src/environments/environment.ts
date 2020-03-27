@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  regUrl: "http://localhost:3000/registration",
-  profileUrl: "http://localhost:3000/user/:id"
+  baseURL: "http://localhost:3000"
 };
 
 /*

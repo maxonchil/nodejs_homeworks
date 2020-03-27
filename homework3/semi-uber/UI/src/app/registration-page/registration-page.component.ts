@@ -73,11 +73,10 @@ export class RegistrationPageComponent implements OnInit {
       status
     };
     this.http
-      .post(env.regUrl, this.user, { observe: "response" })
+      .post(`${env.baseURL}/registration`, this.user, { observe: "response" })
       .subscribe((res: any) => {
         localStorage.setItem("JWT", res.body.token);
         this.router.navigate(["/user", res.body.id]);
       });
-    // this.router.navigate(["/user/:1"]);
   }
 }
