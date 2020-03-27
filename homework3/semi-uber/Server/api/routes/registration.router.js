@@ -41,12 +41,8 @@ router.post("/", writeLog, (req, res) => {
   hashPassword(password, saltRounds)
     .then(password => createUser(name, username, password, email, status))
     .then(user => user.save())
-    .then(user => ({
-      id: user.id,
-      token: createToken(user.id, secret)
-    }))
-    .then(({ id, token }) => {
-      res.json({id, token});
+    .then(({ id }) => {
+      res.json({ id, token: createToken(id, secret) });
       logger.info("New user added to BD and token was sended");
     })
     .catch(error => {
