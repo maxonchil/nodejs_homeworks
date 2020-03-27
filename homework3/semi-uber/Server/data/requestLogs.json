@@ -1,12 +1,1 @@
-{
-  "logs": [
-    { "url": "/", "method": "GET", "time": 1585133023142 },
-    { "url": "/", "method": "GET", "time": 1585133039071 },
-    { "url": "/", "method": "OPTIONS", "time": 1585165220797 },
-    { "url": "/", "method": "POST", "time": 1585167513117 },
-    { "url": "/", "method": "POST", "time": 1585167580141 },
-    { "url": "/", "method": "POST", "time": 1585221259385 },
-    { "url": "/", "method": "POST", "time": 1585221274720 },
-    { "url": "/", "method": "POST", "time": 1585222620976 }
-  ]
-}
+{"logs":[{"url":"/","method":"GET","time":1585133023142},{"url":"/","method":"GET","time":1585133039071},{"url":"/","method":"OPTIONS","time":1585165220797},{"url":"/","method":"POST","time":1585167513117},{"url":"/","method":"POST","time":1585167580141},{"url":"/","method":"POST","time":1585221259385},{"url":"/","method":"POST","time":1585221274720},{"url":"/","method":"POST","time":1585222620976},{"url":"/","method":"POST","time":1585302804167},{"url":"/","method":"POST","time":1585302861073},{"url":"/","method":"POST","time":1585302898619},{"url":"/","method":"POST","time":1585302913875},{"url":"/:id","method":"GET","time":1585312928931},{"url":"/:id","method":"GET","time":1585312953295},{"url":"/:id","method":"GET","time":1585312966131},{"url":"/:id","method":"GET","time":1585313086149},{"url":"/:id","method":"GET","time":1585313110561},{"url":"/:id","method":"GET","time":1585313258928},{"url":"/:id","method":"GET","time":1585313295710},{"url":"/:id","method":"GET","time":1585313498602},{"url":"/:id","method":"GET","time":1585313635050},{"url":"/:id","method":"GET","time":1585313638636},{"url":"/:id","method":"GET","time":1585313667111},{"url":"/:id","method":"GET","time":1585313680659},{"url":"/:id","method":"GET","time":1585313837491},{"url":"/:id","method":"GET","time":1585313875066},{"url":"/:id","method":"GET","time":1585313926461},{"url":"/:id","method":"GET","time":1585313942541},{"url":"/:id","method":"GET","time":1585313949271},{"url":"/:id","method":"GET","time":1585313955595},{"url":"/:id","method":"GET","time":1585313959900},{"url":"/:id","method":"GET","time":1585313968943},{"url":"/:id","method":"GET","time":1585313977907},{"url":"/:id","method":"GET","time":1585313989812},{"url":"/:id","method":"GET","time":1585314011036},{"url":"/:id","method":"GET","time":1585314019353},{"url":"/:id","method":"GET","time":1585314099321},{"url":"/:id","method":"GET","time":1585314111483},{"url":"/","method":"POST","time":1585314169032},{"url":"/:id","method":"GET","time":1585314169123}]}

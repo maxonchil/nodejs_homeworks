@@ -14,15 +14,13 @@
   "author": "Maksym Koval <maksym_koval1@epam.com>",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "bcrypt": "^4.0.1",
     "config": "^3.3.0",
-    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.1.2",
-    "mongoose": "^5.9.6",
-    "mongoose-unique-validator": "^2.0.3",
-    "mongoose-validator": "^2.1.0"
+    "mongoose": "^5.9.6"
   }
 }

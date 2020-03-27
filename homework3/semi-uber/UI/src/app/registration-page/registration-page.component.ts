@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { RegistrationModel } from "../interfaces/registration.inteface";
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { environment as env } from "../../environments/environment";
 import { Router } from "@angular/router";
 
@@ -14,16 +14,18 @@ import { Router } from "@angular/router";
 export class RegistrationPageComponent implements OnInit {
   user: RegistrationModel;
   errorFillFields = false;
+  pasRegexp: "(?=^.{6,}$)((?=.*d)(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*";
+  logRegexp: ".{5,10}";
 
   userData = new FormGroup({
     name: new FormControl("", [Validators.required]),
     username: new FormControl("", [
       Validators.required,
-      Validators.pattern(env.pasRegexp)
+      Validators.pattern(this.logRegexp)
     ]),
     password: new FormControl("", [
       Validators.required,
-      Validators.pattern(env.pasRegexp)
+      Validators.pattern(this.pasRegexp)
     ]),
     email: new FormControl("", [
       Validators.min(4),
@@ -57,11 +59,11 @@ export class RegistrationPageComponent implements OnInit {
 
     const userData = [name, username, password, email, status];
     const clearField = userData.some(e => e === "");
-    // if (clearField) {
-    //   console.error("All fields must be filled");
-    //   this.errorFillFields = true;
-    //   throw new Error();
-    // }
+    if (clearField) {
+      console.error("All fields must be filled");
+      this.errorFillFields = true;
+      throw new Error();
+    }
     this.errorFillFields = false;
     this.user = {
       name,
@@ -72,7 +74,10 @@ export class RegistrationPageComponent implements OnInit {
     };
     this.http
       .post(env.regUrl, this.user, { observe: "response" })
-      .subscribe((res: HttpResponse<any>) => console.log(res));
-    this.router.navigate(["/user/:1"]);
+      .subscribe((res: any) => {
+        localStorage.setItem("JWT", res.body.token);
+        this.router.navigate(["/user", res.body.id]);
+      });
+    // this.router.navigate(["/user/:1"]);
   }
 }

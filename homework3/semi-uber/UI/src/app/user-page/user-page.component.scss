@@ -1,0 +1,16 @@
+.users-page {
+  &__info {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  &__name,
+  &__info,
+  &__username,
+  &__status {
+    margin: 10px 0;
+  }
+  &__span {
+    font-weight: 700;
+  }
+}

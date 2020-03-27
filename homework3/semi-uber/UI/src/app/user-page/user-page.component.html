@@ -1,1 +1,17 @@
-<p>user-page works!</p>
+<div class="users-page">
+  <ul class="users-page__info">
+    <li class="users-page__name">
+      <span class="users-page__span">Name: </span>{{ user.name }}
+    </li>
+    <li class="users-page__username">
+      <span class="users-page__span">Username: </span>{{ user.username }}
+    </li>
+    <li class="users-page__email">
+      <span class="users-page__span">Email: </span>{{ user.email }}
+    </li>
+    <li class="users-page__status">
+      <span class="users-page__span">Status: </span>{{ user.status }}
+    </li>
+  </ul>
+  <button class="users-page__reset">Reset password</button>
+</div>
