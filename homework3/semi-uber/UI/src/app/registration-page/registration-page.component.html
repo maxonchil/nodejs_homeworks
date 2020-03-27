@@ -90,11 +90,13 @@
       />
     </label>
 
-    <button class="registration__button button" (click)="registrateUser()">
+    <button
+      class="registration__button button"
+      [disabled]="!userData.valid"
+      (click)="registrateUser()"
+    >
       Submit
     </button>
   </div>
 </form>
-<span class="registration__error" *ngIf="errorFillFields"
-  >All fields must be filled</span
->
+

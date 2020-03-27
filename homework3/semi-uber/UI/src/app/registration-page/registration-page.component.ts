@@ -13,22 +13,23 @@ import { Router } from "@angular/router";
 })
 export class RegistrationPageComponent implements OnInit {
   user: RegistrationModel;
-  errorFillFields = false;
   pasRegexp: "(?=^.{6,}$)((?=.*d)(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*";
   logRegexp: ".{5,10}";
 
   userData = new FormGroup({
-    name: new FormControl("", [Validators.required]),
+    name: new FormControl("", [Validators.required, Validators.minLength(2)]),
     username: new FormControl("", [
       Validators.required,
+      Validators.minLength(2),
       Validators.pattern(this.logRegexp)
     ]),
     password: new FormControl("", [
       Validators.required,
+      Validators.minLength(6),
       Validators.pattern(this.pasRegexp)
     ]),
     email: new FormControl("", [
-      Validators.min(4),
+      Validators.minLength(4),
       Validators.required,
       Validators.email
     ]),
@@ -57,14 +58,6 @@ export class RegistrationPageComponent implements OnInit {
     const email = inputs.email;
     const status = inputs.status;
 
-    const userData = [name, username, password, email, status];
-    const clearField = userData.some(e => e === "");
-    if (clearField) {
-      console.error("All fields must be filled");
-      this.errorFillFields = true;
-      throw new Error();
-    }
-    this.errorFillFields = false;
     this.user = {
       name,
       username,
