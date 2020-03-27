@@ -13,5 +13,6 @@
   },
   "JWT": {
     "secret": "JWT_SECRET"
-  }
+  },
+  "saltRounds": "SALT_ROUNDS"
 }

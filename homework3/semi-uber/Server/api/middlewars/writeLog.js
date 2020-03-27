@@ -22,10 +22,9 @@ const updateData = (newData, filePath, logs) => {
   try {
     logs.push(newData);
     logger.info(newData);
-    logger.error("Some error")
     fs.writeFileSync(filePath, JSON.stringify({ logs }));
   } catch (err) {
-    console.error(err);
+    console.error(err.name);
     throw err;
   }
 };

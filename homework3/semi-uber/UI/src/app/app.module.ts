@@ -5,16 +5,18 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { RegestrationPageComponent } from "./regestration-page/regestration-page.component";
+import { RegistrationPageComponent } from "./registration-page/registration-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { HomePageComponent } from "./home-page/home-page.component";
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegestrationPageComponent,
+    RegistrationPageComponent,
     LoginPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

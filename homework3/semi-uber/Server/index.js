@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const config = require("config");
+const cors = require("cors");
 const registrationRouter = require("./api/routes/registration.router");
-const allowCrossDomain = require("./api/middlewars/allowCrossDomain");
 
 const writeLog = require("./api/middlewars/writeLog");
 const { port: serverPort } = config.get("webServer");
@@ -14,8 +14,10 @@ mongoose.connect(dbURL, {
   useNewUrlParser: true
 });
 
+app.use(cors());
+
 app.use(express.json());
-app.use(allowCrossDomain);
+
 app.use("../api", express.static("api"));
 
 app.get("/", writeLog);

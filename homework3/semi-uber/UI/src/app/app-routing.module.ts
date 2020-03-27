@@ -1,8 +1,9 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { RegestrationPageComponent } from "./regestration-page/regestration-page.component";
+import { RegistrationPageComponent } from "./registration-page/registration-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { HomePageComponent } from "./home-page/home-page.component";
+import { UserPageComponent } from "./user-page/user-page.component";
 
 const routes: Routes = [
   {
@@ -11,11 +12,15 @@ const routes: Routes = [
   },
   {
     path: "registration",
-    component: RegestrationPageComponent
+    component: RegistrationPageComponent
   },
   {
     path: "login",
     component: LoginPageComponent
+  },
+  {
+    path: "user/:id",
+    component: UserPageComponent
   }
 ];
 
