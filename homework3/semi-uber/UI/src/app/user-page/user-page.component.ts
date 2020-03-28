@@ -6,6 +6,8 @@ import { environment as env } from "../../environments/environment";
 import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+
 @Component({
   selector: "app-user-page",
   templateUrl: "./user-page.component.html",
@@ -25,7 +27,11 @@ export class UserPageComponent implements OnInit {
       Validators.pattern(this.pasRegexp)
     ])
   });
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getUserData();
@@ -42,6 +48,13 @@ export class UserPageComponent implements OnInit {
         this.statusOfPassChange = res.message;
         this.showChangePass = false;
       });
+  }
+  deleteAccount() {
+    const id: string = this.route.snapshot.paramMap.get("id");
+    this.http.delete(`${env.baseURL}/user/${id}`).subscribe(() => {
+      this.router.navigate(["/"]);
+      localStorage.removeItem("JWT");
+    });
   }
 
   getUserData() {
