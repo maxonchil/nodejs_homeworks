@@ -13,34 +13,5 @@
       <span class="users-page__span">Status: </span>{{ user.status }}
     </li>
   </ul>
-  <button
-    *ngIf="!showChangePass"
-    (click)="passwordToogle()"
-    class="users-page__reset"
-  >
-    change-password
-  </button>
-  <form
-    *ngIf="showChangePass"
-    [formGroup]="changePasswordForm"
-    class="user-page__change-password change-password"
-  >
-    <input
-      class="change-password__new-password"
-      type="text"
-      placeholder="Your new password"
-      formControlName="newPassword"
-    />
-    <button
-      [disabled]="changePasswordForm.invalid"
-      class="change-password__button button"
-      (click)="changePassword()"
-    >
-      Submit
-    </button>
-  </form>
-  <p *ngIf="!showChangePass" class="change-password__status">
-    {{ statusOfPassChange }}
-  </p>
-  <button class="users-page__delete" (click)="deleteAccount()">Delete account</button>
 </div>
+<app-reset-password></app-reset-password>
