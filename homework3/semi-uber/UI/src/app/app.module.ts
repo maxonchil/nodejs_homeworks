@@ -10,6 +10,7 @@ import { LoginPageComponent } from "./login-page/login-page.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { UserPageComponent } from './user-page/user-page.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ShipperComponent } from './shipper/shipper.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     LoginPageComponent,
     HomePageComponent,
     UserPageComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ShipperComponent
   ],
   imports: [
     BrowserModule,

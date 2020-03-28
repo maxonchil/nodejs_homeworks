@@ -1,0 +1,35 @@
+<form class="load" [formGroup]="loadGroup">
+  <span class="load__title">Create your load</span>
+  <input
+    class="load__width"
+    formControlName="width"
+    type="text"
+    placeholder="Width"
+  />
+  <input
+    class="load__height"
+    formControlName="height"
+    type="text"
+    placeholder="Height"
+  />
+  <input
+    class="load__length"
+    ormControlName="length"
+    type="text"
+    placeholder="length"
+  />
+  <input
+    class="load__payload"
+    ormControlName="payload"
+    type="text"
+    placeholder="Payload"
+  />
+  <button
+    (click)="addLoad()"
+    class="load__button button"
+    [disabled]="loadGroup.invalid"
+    type="button"
+  >
+    Submit
+  </button>
+</form>
