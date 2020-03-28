@@ -34,19 +34,31 @@ router.post("/", writeLog, (req, res) => {
 
   if (error) {
     logger.error(error);
-    return res.json({ status: error.name });
+    return res.json({
+      success: false,
+      data: {},
+      error: { code: error.code, message: error.message }
+    });
   }
 
   hashPassword(password, saltRounds)
     .then(password => createUser(name, username, password, email, status))
     .then(user => user.save())
     .then(({ id }) => {
-      res.json({ id, token: createToken(id, secret) });
       logger.info("New user added to BD and token was sended");
+      res.json({
+        success: true,
+        data: { id, token: createToken(id, secret) },
+        error: null
+      });
     })
     .catch(error => {
       logger.error(error.name);
-      return res.json({ status: error.name });
+      return res.json({
+        success: false,
+        data: {},
+        error: { code: error.code, message: error.message }
+      });
     });
 });
 module.exports = router;

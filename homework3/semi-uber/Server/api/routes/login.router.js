@@ -8,9 +8,13 @@ const jwt = require("jsonwebtoken");
 const log4js = require("log4js");
 const logger = log4js.getLogger();
 
-const errorHandle = (err, res) => {
-  logger.error(err);
-  res.status(400).json({ status: err });
+const errorHandle = (message, res) => {
+  logger.error(message);
+  res.status(400).json({
+    success: false,
+    data: {},
+    error: { code: 400, message }
+  });
 };
 
 router.post("/", async (req, res) => {
@@ -28,8 +32,11 @@ router.post("/", async (req, res) => {
   if (!verify) {
     return errorHandle("Login failed", res);
   }
-  logger.info(user);
-  res.status(200).json({ id: user.id, token: token });
+  res.status(200).json({
+    success: true,
+    data: { id: user.id, token: token },
+    error: null
+  });
 });
 
 module.exports = router;
