@@ -92,7 +92,7 @@
 
     <button
       class="registration__button button"
-      [disabled]="!userData.valid"
+      [disabled]="userData.invalid"
       (click)="registrateUser()"
     >
       Submit
