@@ -4,10 +4,7 @@
 
 export const environment = {
   production: false,
-  regUrl: "http://localhost:3000/registration",
-  pasRegexp:
-    "(?=^.{6,}$)((?=.*d)(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*",
-  logRegexp: ".{5,10}"
+  baseURL: "http://localhost:3000"
 };
 
 /*

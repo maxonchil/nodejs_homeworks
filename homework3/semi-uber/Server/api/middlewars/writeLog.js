@@ -25,7 +25,7 @@ const updateData = (newData, filePath, logs) => {
     fs.writeFileSync(filePath, JSON.stringify({ logs }));
   } catch (err) {
     console.error(err.name);
-    throw err;
+    return;
   }
 };
 
