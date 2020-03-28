@@ -14,15 +14,14 @@ router.get("/:id", writeLog, (req, res) => {
   const userID = jwt.verify(token, secret);
   if (pageID !== userID) {
     logger.error("Access rejected");
-    res.status(403).json({ status: "Access rejected" });
-    throw new Error();
+    return res.status(403).json({ status: "Access rejected" });
   }
 
   User.findById(userID)
     .then(userData => res.json(userData))
     .catch(err => {
       logger.error(err.name);
-      throw err;
+      return res.json({ status: err.name });
     });
 });
 module.exports = router;

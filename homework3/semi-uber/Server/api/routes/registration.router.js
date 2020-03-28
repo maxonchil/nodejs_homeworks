@@ -34,8 +34,7 @@ router.post("/", writeLog, (req, res) => {
 
   if (error) {
     logger.error(error);
-    res.json({ status: error.name });
-    throw error;
+    return res.json({ status: error.name });
   }
 
   hashPassword(password, saltRounds)
@@ -47,8 +46,7 @@ router.post("/", writeLog, (req, res) => {
     })
     .catch(error => {
       logger.error(error.name);
-      res.json({ status: error.name });
-      throw error;
+      return res.json({ status: error.name });
     });
 });
 module.exports = router;
