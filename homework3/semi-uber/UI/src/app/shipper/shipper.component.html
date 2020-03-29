@@ -1,35 +1,67 @@
-<form class="load" [formGroup]="loadGroup">
+<form class="load-form" [formGroup]="loadGroup">
   <span class="load__title">Create your load</span>
   <input
-    class="load__width"
+    class="load-form__width"
     formControlName="width"
-    type="text"
+    type="number"
     placeholder="Width"
   />
   <input
-    class="load__height"
+    class="load-form__height"
     formControlName="height"
-    type="text"
+    type="number"
     placeholder="Height"
   />
   <input
-    class="load__length"
-    ormControlName="length"
-    type="text"
+    class="load-form__length"
+    formControlName="length"
+    type="number"
     placeholder="length"
   />
   <input
-    class="load__payload"
-    ormControlName="payload"
-    type="text"
+    class="load-form__payload"
+    formControlName="payload"
+    type="number"
     placeholder="Payload"
   />
   <button
     (click)="addLoad()"
-    class="load__button button"
+    class="load-form__button button"
     [disabled]="loadGroup.invalid"
     type="button"
   >
     Submit
   </button>
 </form>
+<ul class="loads">
+  <li *ngFor="let load of userLoads" class="loads__item load-card">
+    <div class="load-card__title">Load id: {{ load._id }}</div>
+    <div class="load-card__status">
+      <span class="load-card__prop">Status: </span>{{ load.status }}
+    </div>
+    <div class="load-card__state">
+      <span class="load-card__prop">State: </span>{{ load.state }}
+    </div>
+    <ul class="load-card__dimensions">
+      <li class="load-card__width">
+        <span class="load-card__prop">Width: </span>{{ load.dimensions.width }}
+      </li>
+      <li class="load-card__height">
+        <span class="load-card__prop">Height: </span
+        >{{ load.dimensions.height }}
+      </li>
+      <li class="load-card__length">
+        <span class="load-card__prop">Length: </span
+        >{{ load.dimensions.length }}
+      </li>
+    </ul>
+    <div class="load-card__payload">
+      <span class="load-card__prop">Payload: </span>{{ load.payload }}
+    </div>
+    <div class="load-card__buttons">
+      <button class="load-card__update">update</button>
+      <button class="load-card__post">post</button>
+      <button class="load-card__delete" (click)="deleteLoad(load)">delete</button>
+    </div>
+  </li>
+</ul>

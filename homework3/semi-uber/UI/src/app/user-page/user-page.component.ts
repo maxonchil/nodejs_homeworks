@@ -27,10 +27,7 @@ export class UserPageComponent implements OnInit {
         }
       })
       .subscribe((res: any) => {
-        (this.user.name = res.data.name),
-          (this.user.username = res.data.username),
-          (this.user.status = res.data.status),
-          (this.user.email = res.data.email);
+        this.user = res.data;
         localStorage.setItem("userData", JSON.stringify(this.user));
       });
   }

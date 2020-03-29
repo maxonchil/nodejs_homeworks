@@ -2,6 +2,7 @@ import { environment as env } from "./../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-shipper",
@@ -9,6 +10,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./shipper.component.scss"]
 })
 export class ShipperComponent implements OnInit {
+  userLoads: any[] = this.getLsItem("userData").customData.loads;
   numberPatter = "[0-9]+";
 
   loadGroup = new FormGroup({
@@ -30,12 +32,43 @@ export class ShipperComponent implements OnInit {
     ])
   });
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}
 
+  getLsItem(item: string) {
+    return JSON.parse(localStorage.getItem(item));
+  }
+
+  deleteLoad({ _id: id }) {
+    this.http
+      .delete(`${env.baseURL}/loads/delete`, {
+        headers: {
+          load: id
+        }
+      })
+      .subscribe(res => this.clearLoad(id));
+  }
+
+  updateLoads(newLoad: object) {
+    const userData = this.getLsItem("userData");
+    userData.customData.loads.push(newLoad);
+    localStorage.setItem("userData", JSON.stringify(userData));
+    this.userLoads.push(newLoad);
+  }
+
+  clearLoad(id: string) {
+    this.userLoads.filter((load: any) => load._id !== id);
+    const updatedData = this.getLsItem("userData").customData.loads.filter(
+      (load: any) => load._id !== id
+    );
+    localStorage.set("userData", updatedData);
+  }
+
   addLoad() {
+    const id = this.route.snapshot.paramMap.get("id");
     const loadData = {
+      id,
       dimensions: {
         width: this.loadGroup.get("width").value,
         height: this.loadGroup.get("height").value,
@@ -44,8 +77,8 @@ export class ShipperComponent implements OnInit {
       payload: this.loadGroup.get("payload").value
     };
 
-    this.http
-      .post(`${env.baseURL}/loads`, loadData)
-      .subscribe(res => console.log(res));
+    this.http.post(`${env.baseURL}/loads`, loadData).subscribe((res: any) => {
+      this.updateLoads(res.data);
+    });
   }
 }
