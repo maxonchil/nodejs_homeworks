@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const writeLog = require("../middlewars/writeLog");
-const userGetHandler = require("../handlers/user.handlers/userGetHandler");
-const userPatchHandler = require("../handlers/user.handlers/userPatchHandler");
-const userDeleteHandler = require("../handlers/user.handlers/userDeteleHandler");
+const userGetHandler = require("../handlers/userHandlers/userGetHandler");
+const userPatchHandler = require("../handlers/userHandlers/userPatchHandler");
+const userDeleteHandler = require("../handlers/userHandlers/userDeteleHandler");
 
 router.get("/:id", writeLog, userGetHandler);
 

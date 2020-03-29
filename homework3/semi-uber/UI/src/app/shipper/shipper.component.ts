@@ -47,22 +47,23 @@ export class ShipperComponent implements OnInit {
           load: id
         }
       })
-      .subscribe(res => this.clearLoad(id));
+      .subscribe(res => this.removeLoad(id));
   }
 
+  removeLoad(id: string) {
+    const updatedUserData = this.getLsItem("userData");
+    const updatedLogs = updatedUserData.customData.loads.filter(
+      (load: any) => load._id !== id
+    );
+    updatedUserData.customData.loads = updatedLogs;
+    this.userLoads = updatedLogs;
+    localStorage.setItem("userData", JSON.stringify(updatedUserData));
+  }
   updateLoads(newLoad: object) {
     const userData = this.getLsItem("userData");
     userData.customData.loads.push(newLoad);
     localStorage.setItem("userData", JSON.stringify(userData));
     this.userLoads.push(newLoad);
-  }
-
-  clearLoad(id: string) {
-    this.userLoads.filter((load: any) => load._id !== id);
-    const updatedData = this.getLsItem("userData").customData.loads.filter(
-      (load: any) => load._id !== id
-    );
-    localStorage.set("userData", updatedData);
   }
 
   addLoad() {
