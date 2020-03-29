@@ -9,7 +9,7 @@ const loadsPostHandler = (req, res) => {
     created_by: id,
     logs: [{ message: "Created load", time: new Date().getTime() }],
     assigned_to: "Not assigned",
-    status: "New",
+    status: "NEW",
     state: "Created",
     dimensions,
     payload

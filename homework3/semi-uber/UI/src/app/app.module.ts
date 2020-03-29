@@ -11,6 +11,9 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { UserPageComponent } from './user-page/user-page.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ShipperComponent } from './shipper/shipper.component';
+import { DeleteLoadComponent } from './delete-load/delete-load.component';
+import { PostLoadComponent } from './post-load/post-load.component';
+import { UpdateLoadComponent } from './update-load/update-load.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ShipperComponent } from './shipper/shipper.component';
     HomePageComponent,
     UserPageComponent,
     ResetPasswordComponent,
-    ShipperComponent
+    ShipperComponent,
+    DeleteLoadComponent,
+    PostLoadComponent,
+    UpdateLoadComponent
   ],
   imports: [
     BrowserModule,

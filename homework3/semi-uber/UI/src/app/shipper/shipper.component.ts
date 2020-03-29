@@ -40,32 +40,6 @@ export class ShipperComponent implements OnInit {
     return JSON.parse(localStorage.getItem(item));
   }
 
-  deleteLoad({ _id: id }) {
-    this.http
-      .delete(`${env.baseURL}/loads/delete`, {
-        headers: {
-          load: id
-        }
-      })
-      .subscribe(res => this.removeLoad(id));
-  }
-
-  removeLoad(id: string) {
-    const updatedUserData = this.getLsItem("userData");
-    const updatedLogs = updatedUserData.customData.loads.filter(
-      (load: any) => load._id !== id
-    );
-    updatedUserData.customData.loads = updatedLogs;
-    this.userLoads = updatedLogs;
-    localStorage.setItem("userData", JSON.stringify(updatedUserData));
-  }
-  updateLoads(newLoad: object) {
-    const userData = this.getLsItem("userData");
-    userData.customData.loads.push(newLoad);
-    localStorage.setItem("userData", JSON.stringify(userData));
-    this.userLoads.push(newLoad);
-  }
-
   addLoad() {
     const id = this.route.snapshot.paramMap.get("id");
     const loadData = {
@@ -81,5 +55,12 @@ export class ShipperComponent implements OnInit {
     this.http.post(`${env.baseURL}/loads`, loadData).subscribe((res: any) => {
       this.updateLoads(res.data);
     });
+  }
+
+  updateLoads(newLoad: object) {
+    const userData = this.getLsItem("userData");
+    userData.customData.loads.push(newLoad);
+    localStorage.setItem("userData", JSON.stringify(userData));
+    this.userLoads.push(newLoad);
   }
 }

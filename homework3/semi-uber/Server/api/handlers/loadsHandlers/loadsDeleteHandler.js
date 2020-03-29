@@ -5,7 +5,7 @@ const errorHandler = require("../error.handler");
 
 const loadsDeleteHandler = (req, res) => {
   const loadID = req.headers["load"];
-  Load.findByIdAndRemove(loadID)
+  Load.findOneAndRemove({ _id: loadID, status: "NEW" })
     .then(() => logger.info("Load was successfully deleted"))
     .then(() =>
       res.json({

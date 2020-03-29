@@ -61,12 +61,14 @@
     <div class="load-card__payload">
       <span class="load-card__prop">Payload: </span>{{ load.payload }}
     </div>
-    <div class="load-card__buttons">
-      <button class="load-card__update">update</button>
-      <button class="load-card__post">post</button>
-      <button class="load-card__delete" (click)="deleteLoad(load)">
-        delete
-      </button>
+    <div class="load-card__buttons" *ngIf="load.status === 'NEW'">
+      <app-update-load></app-update-load>
+      <app-post-load [userLoads]="userLoads" [load]="load"></app-post-load>
+      <app-delete-load
+        [(userLoads)]="userLoads"
+        [load]="load"
+        (userLoadsChange)="this.userLoads = $event"
+      ></app-delete-load>
     </div>
   </li>
 </ul>

@@ -18,8 +18,9 @@
 }
 .loads {
   list-style-type: none;
-  width: 100%;
+  max-width: 100vw;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 .load-card {
@@ -49,11 +50,5 @@
   }
   &__buttons {
     width: 100%;
-  }
-  &__update,
-  &__post,
-  &__delete {
-    text-transform: uppercase;
-    margin: 5px;
   }
 }
