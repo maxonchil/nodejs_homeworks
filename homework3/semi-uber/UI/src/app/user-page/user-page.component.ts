@@ -5,18 +5,26 @@ import { HttpClient } from "@angular/common/http";
 import { environment as env } from "../../environments/environment";
 import { ActivatedRoute } from "@angular/router";
 
+
 @Component({
   selector: "app-user-page",
   templateUrl: "./user-page.component.html",
   styleUrls: ["./user-page.component.scss"]
 })
 export class UserPageComponent implements OnInit {
+  
+
   user: any = {};
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getUserData();
   }
+
 
   getUserData() {
     const token = localStorage.getItem("JWT");
@@ -29,10 +37,10 @@ export class UserPageComponent implements OnInit {
       })
       .subscribe(
         (res: any) => (
-          (this.user.name = res.name),
-          (this.user.username = res.username),
-          (this.user.status = res.status),
-          (this.user.email = res.email)
+          (this.user.name = res.data.name),
+          (this.user.username = res.data.username),
+          (this.user.status = res.data.status),
+          (this.user.email = res.data.email)
         )
       );
   }

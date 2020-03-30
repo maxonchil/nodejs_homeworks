@@ -32,8 +32,8 @@ export class LoginPageComponent implements OnInit {
       password: inputs.password
     };
     this.http.post(`${env.baseURL}/login`, user).subscribe((res: any) => {
-      localStorage.setItem("JWT", res.token);
-      this.router.navigate(["/user", res.id]);
+      localStorage.setItem("JWT", res.data.token);
+      this.router.navigate(["/user", res.data.id]);
     });
   }
 }
