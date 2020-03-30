@@ -1,1 +1,2 @@
-<button class="load-card__update">update</button>
+<button class="load-card__update" (click)="updateLoad(load)">update</button>
+<p *ngIf="updateStatus">{{ updateStatus }}</p>

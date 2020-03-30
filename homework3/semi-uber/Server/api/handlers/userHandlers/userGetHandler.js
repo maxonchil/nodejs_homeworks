@@ -21,21 +21,26 @@ const userGetHandler = async (req, res) => {
   const pageID = req.params.id;
   const token = req.headers["token"];
   const userID = jwt.verify(token, secret);
+  let user;
+  let customData;
 
   if (pageID !== userID) {
     return errorHandler("Access rejected", res);
   }
-
-  const user = await User.findById(userID);
-  if (!user) {
-    return errorHandler("Can not find such user", res);
+  try {
+    user = await User.findById(userID);
+  } catch (error) {
+    return errorHandler(error.message, res);
   }
+
   const { name, username, email, status } = user;
 
-  const customData = await getCustomData(status, userID);
-  if (!customData) {
-    return errorHandler("Can not find custom data", res);
+  try {
+    customData = await getCustomData(status, userID);
+  } catch (error) {
+    return errorHandler(error.message, res);
   }
+
   const userData = {
     name,
     username,

@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { environment as env } from "./../../environments/environment";
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-update-load',
-  templateUrl: './update-load.component.html',
-  styleUrls: ['./update-load.component.scss']
+  selector: "app-update-load",
+  templateUrl: "./update-load.component.html",
+  styleUrls: ["./update-load.component.scss"]
 })
 export class UpdateLoadComponent implements OnInit {
+  @Input() userLoads: any;
+  @Input() load: any;
+  @Input() loadGroup: any;
 
-  constructor() { }
+  updateStatus: string;
 
-  ngOnInit(): void {
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {}
+
+  updateLoad({ _id: id }) {
+    const { dimensions, payload } = this.userLoads.find(e => e._id === id);
+    const postBody = { dimensions, payload, id };
+    this.http
+      .put(`${env.baseURL}/loads`, postBody)
+      .subscribe((res: any) => (this.updateStatus = res.data.status));
   }
-
 }

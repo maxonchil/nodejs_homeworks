@@ -3,19 +3,18 @@ const log4js = require("log4js");
 const logger = log4js.getLogger();
 const errorHandler = require("../error.handler");
 
-const loadsPatchHandler = (req, res) => {
-  const { loadID: id, status } = req.body;
-  
-  Load.findByIdAndUpdate(id, { status })
-    .then(user => {
-      logger.info("Load status was updated!");
+const loadsPutHandler = (req, res) => {
+  const { dimensions, payload, id } = req.body;
+  Load.findByIdAndUpdate(id, { status: "NEW", dimensions, payload })
+    .then(() => {
+      logger.info("Load info was updated!");
       res.json({
         success: true,
-        data: { status: "POSTED" },
+        data: { status: "Updated" },
         error: null
       });
     })
     .catch(error => errorHandler(error.message, res));
 };
 
-module.exports = loadsPatchHandler;
+module.exports = loadsPutHandler;

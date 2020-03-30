@@ -22,14 +22,17 @@ const loadsPostHandler = (req, res) => {
 
   const newLoad = new Load(validatedLoad);
 
-  newLoad.save().then(() => {
-    logger.info("New load was added");
-    res.json({
-      success: true,
-      data: newLoad,
-      error: null
-    });
-  });
+  newLoad
+    .save()
+    .then(() => {
+      logger.info("New load was added");
+      res.json({
+        success: true,
+        data: newLoad,
+        error: null
+      });
+    })
+    .catch(error => errorHandler(error.message, res));
 };
 
 module.exports = loadsPostHandler;

@@ -4,7 +4,7 @@ const { User } = require("../../Schemas/user.schema");
 const { Load } = require("../../Schemas/load.schema");
 const errorHandler = require("../error.handler");
 
-async function userDeleteHandler(req, res) {
+function userDeleteHandler(req, res) {
   const { id: userID } = req.params;
 
   User.findByIdAndDelete(userID)

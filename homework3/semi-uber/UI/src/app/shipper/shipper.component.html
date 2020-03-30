@@ -46,23 +46,63 @@
       <span class="load-card__prop">State: </span>{{ load.state }}
     </div>
     <ul class="load-card__dimensions">
-      <li class="load-card__width">
+      <li *ngIf="load.status !== 'NEW'" class="load-card__width">
         <span class="load-card__prop">Width: </span>{{ load.dimensions.width }}
       </li>
-      <li class="load-card__height">
+      <li *ngIf="load.status === 'NEW'" class="load-card__width">
+        <label class="load-card__prop"
+          >Width:
+          <input
+            class="load-card__input"
+            [(ngModel)]="load.dimensions.width"
+            type="text"
+          />
+        </label>
+      </li>
+      <li *ngIf="load.status !== 'NEW'" class="load-card__height">
         <span class="load-card__prop">Height: </span
         >{{ load.dimensions.height }}
       </li>
-      <li class="load-card__length">
+      <li *ngIf="load.status === 'NEW'" class="load-card__height">
+        <label class="load-card__prop"
+          >Height:
+          <input
+            class="load-card__input"
+            [(ngModel)]="load.dimensions.height"
+            type="text"
+          />
+        </label>
+      </li>
+      <li *ngIf="load.status !== 'NEW'" class="load-card__height">
         <span class="load-card__prop">Length: </span
         >{{ load.dimensions.length }}
       </li>
+      <li *ngIf="load.status === 'NEW'" class="load-card__length">
+        <label class="load-card__prop"
+          >Length:
+          <input
+            class="load-card__input"
+            [(ngModel)]="load.dimensions.length"
+            type="text"
+        /></label>
+      </li>
     </ul>
-    <div class="load-card__payload">
-      <span class="load-card__prop">Payload: </span>{{ load.payload }}
+    <div *ngIf="load.status !== 'NEW'" class="load-card__height">
+      <span class="load-card__prop">Payload: </span
+      >{{ load.dimensions.payload }}
+    </div>
+    <div *ngIf="load.status === 'NEW'" class="load-card__payload">
+      <label class="load-card__prop"
+        >Payload:
+        <input class="load-card__input" [(ngModel)]="load.payload" type="text"
+      /></label>
     </div>
     <div class="load-card__buttons" *ngIf="load.status === 'NEW'">
-      <app-update-load></app-update-load>
+      <app-update-load
+        [loadGroup]="loadGroup.value"
+        [userLoads]="userLoads"
+        [load]="load"
+      ></app-update-load>
       <app-post-load [userLoads]="userLoads" [load]="load"></app-post-load>
       <app-delete-load
         [(userLoads)]="userLoads"
