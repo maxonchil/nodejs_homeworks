@@ -9,6 +9,7 @@ const log4js = require("log4js");
 const logger = log4js.getLogger();
 const { User, userSchemaValidation } = require("../Schemas/user.schema");
 const writeLog = require("../middlewars/writeLog");
+const errorHandler = require("../handlers/error.handler");
 
 const hashPassword = (password, saltRounds) => {
   return bcrypt.hash(password, saltRounds);
@@ -33,12 +34,7 @@ router.post("/", writeLog, (req, res) => {
   const { name, username, password, email, status } = value;
 
   if (error) {
-    logger.error(error);
-    return res.json({
-      success: false,
-      data: {},
-      error: { code: error.code, message: error.message }
-    });
+    return errorHandler(error.message, res);
   }
 
   hashPassword(password, saltRounds)
@@ -53,12 +49,7 @@ router.post("/", writeLog, (req, res) => {
       });
     })
     .catch(error => {
-      logger.error(error.name);
-      return res.json({
-        success: false,
-        data: {},
-        error: { code: error.code, message: error.message }
-      });
+      return errorHandler(error.message, res);
     });
 });
 module.exports = router;
