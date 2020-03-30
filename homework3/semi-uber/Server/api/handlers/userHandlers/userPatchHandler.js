@@ -12,15 +12,21 @@ const hashPassword = (password, saltRounds) => {
 
 async function userPatchHandler(req, res) {
   const { newPassword, id: userID } = req.body;
-  const hashedPass = await hashPassword(newPassword, saltRounds);
-  if (!hashPassword) {
-    return errorHandler("Password chanching was failt!", res);
+  let hashedPass;
+  let updatedUser;
+
+  try {
+    hashedPass = await hashPassword(newPassword, saltRounds);
+  } catch (error) {
+    return errorHandler(error.message, res);
   }
-  const updatedUser = await User.findByIdAndUpdate(userID, {
-    password: hashedPass
-  });
-  if (!updatedUser) {
-    return errorHandler("Password chanching was failt!", res);
+
+  try {
+    updatedUser = await User.findByIdAndUpdate(userID, {
+      password: hashedPass
+    });
+  } catch (error) {
+    return errorHandler(error.message, res);
   }
 
   logger.info("Password was updated!");

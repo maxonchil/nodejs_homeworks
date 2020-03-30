@@ -1,10 +1,7 @@
-import { UserShipper } from "./../interfaces/user-shipper.inerfase copy";
-import { UserDriver } from "./../interfaces/user-driver.inerfase";
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment as env } from "../../environments/environment";
 import { ActivatedRoute } from "@angular/router";
-
 
 @Component({
   selector: "app-user-page",
@@ -12,19 +9,13 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./user-page.component.scss"]
 })
 export class UserPageComponent implements OnInit {
-  
-
   user: any = {};
 
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getUserData();
   }
-
 
   getUserData() {
     const token = localStorage.getItem("JWT");
@@ -35,13 +26,9 @@ export class UserPageComponent implements OnInit {
           token
         }
       })
-      .subscribe(
-        (res: any) => (
-          (this.user.name = res.data.name),
-          (this.user.username = res.data.username),
-          (this.user.status = res.data.status),
-          (this.user.email = res.data.email)
-        )
-      );
+      .subscribe((res: any) => {
+        this.user = res.data;
+        localStorage.setItem("userData", JSON.stringify(this.user));
+      });
   }
 }
