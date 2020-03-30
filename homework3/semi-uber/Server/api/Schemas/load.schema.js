@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("@hapi/joi");
 const Schema = mongoose.Schema;
+
 const Load = new Schema({
   created_by: { type: String },
   logs: { type: Array },
@@ -10,6 +11,7 @@ const Load = new Schema({
   dimensions: { type: Object },
   payload: { type: Number }
 });
+
 const loadSchemaValidation = Joi.object({
   created_by: Joi.string().required(),
   logs: Joi.array().required(),
@@ -20,7 +22,7 @@ const loadSchemaValidation = Joi.object({
   state: Joi.string()
     .required()
     .min(3),
-  dimensions: Joi.object().required(),
+    dimensions: Joi.object().required(),
   payload: Joi.number().required()
 });
 

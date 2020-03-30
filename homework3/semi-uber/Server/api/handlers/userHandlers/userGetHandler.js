@@ -6,14 +6,15 @@ const jwt = require("jsonwebtoken");
 const { secret } = config.get("JWT");
 const errorHandler = require("../error.handler");
 const { Load } = require("../../Schemas/load.schema");
+const { Truck } = require("../../Schemas/truck.schema");
 
 async function getCustomData(stats, userID) {
   if (stats === "Shipper") {
     const loads = await Load.find({ created_by: userID });
     return { loads };
   } else {
-    // const trucks = await Load.find({ created_by: userID });
-    // return { trucks };
+    const trucks = await Truck.find({ created_by: userID });
+    return { trucks };
   }
 }
 
