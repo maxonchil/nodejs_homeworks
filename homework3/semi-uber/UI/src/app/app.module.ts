@@ -14,6 +14,8 @@ import { ShipperComponent } from "./shipper/shipper.component";
 import { DeleteLoadComponent } from "./delete-load/delete-load.component";
 import { PostLoadComponent } from "./post-load/post-load.component";
 import { UpdateLoadComponent } from "./update-load/update-load.component";
+import { DriverComponent } from "./driver/driver.component";
+import { AssignTruckComponent } from "./assign-truck/assign-truck.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { UpdateLoadComponent } from "./update-load/update-load.component";
     ShipperComponent,
     DeleteLoadComponent,
     PostLoadComponent,
-    UpdateLoadComponent
+    UpdateLoadComponent,
+    DriverComponent,
+    AssignTruckComponent
   ],
   imports: [
     BrowserModule,

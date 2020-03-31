@@ -7,6 +7,7 @@ const registrationRouter = require("./api/routes/registration.router");
 const userRouter = require("./api/routes/user.router");
 const loginRouter = require("./api/routes/login.router");
 const loadsRouter = require("./api/routes/loads.router");
+const trucksLoader = require("./api/routes/trucks.router");
 
 const writeLog = require("./api/middlewars/writeLog");
 const { port: serverPort } = config.get("webServer");
@@ -30,6 +31,8 @@ app.use("/login", loginRouter);
 app.use("/user", userRouter);
 
 app.use("/loads", loadsRouter);
+
+app.use("/trucks", trucksLoader);
 
 app.listen(serverPort, () => {
   console.log("Now listen on port ", serverPort);

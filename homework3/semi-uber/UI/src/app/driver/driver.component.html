@@ -1,0 +1,90 @@
+<form class="trucks" [formGroup]="trucks">
+  <div class="trucks__title">Add a trucks</div>
+  <label class="trucks__label"
+    ><span class="trucks__sprinter">sprinter</span
+    ><input
+      formControlName="truck"
+      value="SPRINTER"
+      class="trucks__radio"
+      name="truck"
+      type="radio"
+  /></label>
+  <label class="trucks__label"
+    ><span class="trucks__small-straight">small straight</span
+    ><input
+      formControlName="truck"
+      value="SMALL_STRAIGHT"
+      class="trucks__radio"
+      name="truck"
+      type="radio"
+  /></label>
+  <label class="trucks__label"
+    ><span class="trucks__large-straight">large straight</span
+    ><input
+      formControlName="truck"
+      value="LARGE_STRAIGHT"
+      class="trucks__radio"
+      name="truck"
+      type="radio"
+  /></label>
+  <input
+    formControlName="name"
+    name="name"
+    class="name"
+    type="text"
+    placeholder="Truck name"
+  />
+  <button
+    [disabled]="trucks.invalid"
+    class="trucks__button button"
+    type="button"
+    (click)="addTruck()"
+  >
+    Add a truck
+  </button>
+</form>
+
+<ul class="trucks__list">
+  <li *ngFor="let truck of userTrucks" class="trucks__item truck-card">
+    <ul class="truck-card__info">
+      <li class="truck-card__title">
+        <span class="truck-card__span">Truck id:</span>{{ truck._id }}
+      </li>
+      <li class="truck-card__name">
+        <span class="truck-card__span">Track name: </span>{{ truck.name }}
+      </li>
+      <li *ngIf="truck.assigned_to" class="truck-card__assigned">
+        <span class="truck-card__span">Assigned to: </span
+        >{{ truck.assigned_to }}
+      </li>
+      <li class="truck-card__status">
+        <span class="truck-card__span">Status: </span>{{ truck.status }}
+      </li>
+      <li class="truck-card__type">
+        <span class="truck-card__span">Type: </span>{{ truck.type }}
+      </li>
+      <li class="truck-card__width">
+        <span class="truck-card__span">Width: </span
+        >{{ truck.dimensions.width }}
+      </li>
+      <li class="truck-card__height">
+        <span class="truck-card__span">Height: </span
+        >{{ truck.dimensions.height }}
+      </li>
+      <li class="truck-card__length">
+        <span class="truck-card__span">Length: </span
+        >{{ truck.dimensions.length }}
+      </li>
+      <li class="truck-card__payload">
+        <span class="truck-card__span">Payload: </span>{{ truck.payload }}
+      </li>
+    </ul>
+    <div *ngIf="!truck.assigned_to" class="buttons">
+      <app-assign-truck
+        [(userTrucks)]="userTrucks"
+        [truck]="truck"
+        (assigned)="this.userTrucks = $event"
+      ></app-assign-truck>
+    </div>
+  </li>
+</ul>
