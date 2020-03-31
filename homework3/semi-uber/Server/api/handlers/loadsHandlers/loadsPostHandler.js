@@ -2,12 +2,13 @@ const { Load, loadSchemaValidation } = require("../../Schemas/load.schema");
 const log4js = require("log4js");
 const logger = log4js.getLogger();
 const errorHandler = require("../error.handler");
+const logMessage = require("../../utilits/logMessage");
 
 const loadsPostHandler = (req, res) => {
   const { id, dimensions, payload } = req.body;
   const load = {
     created_by: id,
-    logs: [{ message: "Created load", time: new Date().getTime() }],
+    logs: [logMessage("Created load")],
     assigned_to: "Not assigned",
     status: "NEW",
     state: "Created",

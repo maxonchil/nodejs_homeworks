@@ -15,7 +15,7 @@ const trucksPatchHandler = async (req, res) => {
     return errorHandler(error.message, res);
   }
 
-  logger.info("Гnassigned previous truck");
+  logger.info("Unassigned previous truck");
 
   try {
     await Truck.findByIdAndUpdate(truckID, {
