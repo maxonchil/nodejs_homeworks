@@ -2,13 +2,9 @@ const config = require("config");
 const log4js = require("log4js");
 const logger = log4js.getLogger();
 const { User } = require("../../Schemas/user.schema");
-const bcrypt = require("bcrypt");
 const saltRounds = Number(config.get("saltRounds"));
 const errorHandler = require("../error.handler");
-
-const hashPassword = (password, saltRounds) => {
-  return bcrypt.hash(password, saltRounds);
-};
+const hashPassword = require("../../utilits/hashPassword");
 
 async function userPatchHandler(req, res) {
   const { newPassword, id: userID } = req.body;

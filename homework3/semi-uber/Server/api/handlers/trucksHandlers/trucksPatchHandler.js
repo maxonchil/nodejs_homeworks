@@ -8,7 +8,7 @@ const trucksPatchHandler = async (req, res) => {
 
   try {
     await Truck.findOneAndUpdate(
-      { assigned_to: userID },
+      { assigned_to: userID, edit: true },
       { assigned_to: null }
     );
   } catch (error) {
@@ -18,13 +18,18 @@ const trucksPatchHandler = async (req, res) => {
   logger.info("Unassigned previous truck");
 
   try {
-    await Truck.findByIdAndUpdate(truckID, {
-      assigned_to: userID
-    });
+    await Truck.findOneAndUpdate(
+      { _id: truckID, edit: true },
+      {
+        assigned_to: userID
+      }
+    );
   } catch (error) {
     return errorHandler(error.message, res);
   }
+
   logger.info("Truck was succesfully assigned");
+  
   res.json({
     success: true,
     data: userID,

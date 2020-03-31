@@ -11,7 +11,8 @@ const Truck = new Schema({
   type: { type: String },
   dimensions: { type: Object },
   payload: { type: Number },
-  name: { type: String }
+  name: { type: String },
+  edit: { type: Boolean, default: true }
 });
 
 const truckSchemaValidation = Joi.object({
@@ -25,7 +26,8 @@ const truckSchemaValidation = Joi.object({
   payload: Joi.number().required(),
   name: Joi.string()
     .required()
-    .min(2)
+    .min(2),
+  edit: Joi.boolean()
 });
 
 module.exports = {

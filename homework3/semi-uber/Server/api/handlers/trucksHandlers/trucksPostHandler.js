@@ -3,8 +3,9 @@ const logger = log4js.getLogger();
 const errorHandler = require("../error.handler");
 const { Truck, truckSchemaValidation } = require("../../Schemas/truck.schema");
 const getTruckParams = require("../../utilits/trucksParams");
+const checkForEdit = require("../../utilits/checkforEdit");
 
-const trucksPostHandler = (req, res) => {
+const trucksPostHandler = async (req, res) => {
   const { truckData, userID } = req.body;
   const { truckType, truckName } = truckData;
   const { dimensions, payload } = getTruckParams(truckType);
@@ -21,7 +22,16 @@ const trucksPostHandler = (req, res) => {
   );
 
   if (error) {
-    errorHandler(error.message, res);
+    return errorHandler(error.message, res);
+  }
+
+  const editChek = await checkForEdit();
+
+  if (editChek === null) {
+    return errorHandler(
+      "Can not add a truck, when one of them in status 'OL",
+      res
+    );
   }
 
   const newTruck = new Truck(validatedTruck);

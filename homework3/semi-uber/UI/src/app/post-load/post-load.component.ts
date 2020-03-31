@@ -11,6 +11,8 @@ export class PostLoadComponent implements OnInit {
   @Input() userLoads: any;
   @Input() load: any;
 
+  responseText;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
@@ -18,7 +20,13 @@ export class PostLoadComponent implements OnInit {
   postLoad({ _id: id }) {
     this.http
       .patch(`${env.baseURL}/loads`, { loadID: id, status: "POSTED" })
-      .subscribe((res: any) => this.changeLoadStatus(res, id));
+      .subscribe((res: any) => {
+        if (res.status) {
+          this.changeLoadStatus(res, id);
+        } else {
+          this.responseText = res.data.message;
+        }
+      });
   }
 
   getLsItem(item: string) {

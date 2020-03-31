@@ -20,6 +20,9 @@ export class UpdateLoadComponent implements OnInit {
 
   updateLoad({ _id: id }) {
     const { dimensions, payload } = this.userLoads.find(e => e._id === id);
+    dimensions.width = Number(dimensions.width);
+    dimensions.height = Number(dimensions.height);
+    dimensions.length = Number(dimensions.length);
     const postBody = { dimensions, payload, id };
     this.http
       .put(`${env.baseURL}/loads`, postBody)

@@ -7,7 +7,7 @@ const trucksPutHandler = (req, res) => {
   const { truckID, updatedName } = req.body;
 
   Truck.findOneAndUpdate(
-    { _id: truckID, assigned_to: null },
+    { _id: truckID, assigned_to: null, edit: true },
     { name: updatedName }
   )
     .then(result => {

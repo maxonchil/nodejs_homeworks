@@ -2,10 +2,11 @@ const { Load } = require("../../Schemas/load.schema");
 const log4js = require("log4js");
 const logger = log4js.getLogger();
 const errorHandler = require("../error.handler");
+const { STATUS } = require("../../../data/loadData.json");
 
 const loadsDeleteHandler = (req, res) => {
   const loadID = req.headers["load"];
-  Load.findOneAndRemove({ _id: loadID, status: "NEW" })
+  Load.findOneAndRemove({ _id: loadID, status: STATUS.NEW })
     .then(() => logger.info("Load was successfully deleted"))
     .then(() =>
       res.json({

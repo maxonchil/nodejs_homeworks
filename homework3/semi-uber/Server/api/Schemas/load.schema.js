@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 const Joi = require("@hapi/joi");
 const Schema = mongoose.Schema;
+const { STATUS } = require("../../data/loadData.json");
 
 const Load = new Schema({
   created_by: { type: String },
   logs: { type: Array },
-  assigned_to: { type: String },
-  status: { type: String },
-  state: { type: String },
+  assigned_to: { type: String, default: "Not assigned" },
+  status: { type: String, default: STATUS.NEW },
+  state: { type: String, default: "Created" },
   dimensions: { type: Object },
   payload: { type: Number }
 });
@@ -15,14 +16,10 @@ const Load = new Schema({
 const loadSchemaValidation = Joi.object({
   created_by: Joi.string().required(),
   logs: Joi.array().required(),
-  assigned_to: Joi.string().required(),
-  status: Joi.string()
-    .min(3)
-    .required(),
-  state: Joi.string()
-    .required()
-    .min(3),
-    dimensions: Joi.object().required(),
+  assigned_to: Joi.string(),
+  status: Joi.string(),
+  state: Joi.string(),
+  dimensions: Joi.object().required(),
   payload: Joi.number().required()
 });
 
