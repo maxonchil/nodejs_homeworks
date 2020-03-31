@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./login-page.component.scss"]
 })
 export class LoginPageComponent implements OnInit {
+  failLogin = false;
+
   loginForm = new FormGroup({
     username: new FormControl("", [
       Validators.required,
@@ -32,6 +34,9 @@ export class LoginPageComponent implements OnInit {
       password: inputs.password
     };
     this.http.post(`${env.baseURL}/login`, user).subscribe((res: any) => {
+      if (!res.success) {
+        return (this.failLogin = true);
+      }
       localStorage.setItem("JWT", res.data.token);
       this.router.navigate(["/user", res.data.id]);
     });

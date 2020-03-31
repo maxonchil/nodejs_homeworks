@@ -2,7 +2,11 @@ import { ActivatedRoute } from "@angular/router";
 import { environment as env } from "./../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: "app-driver",

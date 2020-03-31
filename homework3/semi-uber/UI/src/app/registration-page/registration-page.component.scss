@@ -23,7 +23,8 @@
     display: flex;
     justify-content: space-between;
   }
-  &__error {
+  &__error,
+  &__fail {
     font-size: 10px;
     color: rgb(255, 0, 0);
   }

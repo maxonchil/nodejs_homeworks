@@ -5,7 +5,7 @@ const errorHandler = (errorMessage, res) => {
   logger.error(errorMessage);
   return res.json({
     success: false,
-    data: {},
+    data: null,
     error: { code: 400, message: errorMessage }
   });
 };

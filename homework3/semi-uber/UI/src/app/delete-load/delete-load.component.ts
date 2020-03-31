@@ -38,7 +38,6 @@ export class DeleteLoadComponent implements OnInit {
     );
     userData.customData.loads = updatedLogs;
     this.userLoads = updatedLogs;
-    console.log(this.userLoads);
     localStorage.setItem("userData", JSON.stringify(userData));
     this.userLoadsChange.emit(this.userLoads);
   }
