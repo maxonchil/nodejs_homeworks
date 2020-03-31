@@ -7,16 +7,18 @@ const trucksPatchHandler = async (req, res) => {
   const { userID, truckID } = req.body;
 
   try {
-    const clearAssign = await Truck.updateMany(
-      { created_by: userID },
-      { $set: { assigned_to: null } }
+    await Truck.findOneAndUpdate(
+      { assigned_to: userID },
+      { assigned_to: null }
     );
   } catch (error) {
     return errorHandler(error.message, res);
   }
-  logger.info("All trucks is not assigned");
+
+  logger.info("Гnassigned previous truck");
+
   try {
-    const assignedTruck = await Truck.findByIdAndUpdate(truckID, {
+    await Truck.findByIdAndUpdate(truckID, {
       assigned_to: userID
     });
   } catch (error) {

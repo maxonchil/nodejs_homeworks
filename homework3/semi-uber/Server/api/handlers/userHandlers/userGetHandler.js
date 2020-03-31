@@ -10,11 +10,19 @@ const { Truck } = require("../../Schemas/truck.schema");
 
 async function getCustomData(stats, userID) {
   if (stats === "Shipper") {
-    const loads = await Load.find({ created_by: userID });
-    return { loads };
+    try {
+      const loads = await Load.find({ created_by: userID });
+      return { loads };
+    } catch (error) {
+      return error;
+    }
   } else {
-    const trucks = await Truck.find({ created_by: userID });
-    return { trucks };
+    try {
+      const trucks = await Truck.find({ created_by: userID });
+      return { trucks };
+    } catch (error) {
+      return error;
+    }
   }
 }
 
