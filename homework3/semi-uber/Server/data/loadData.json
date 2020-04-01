@@ -2,7 +2,8 @@
   "STATUS": {
     "NEW": "NEW",
     "POSTED": "POSTED",
-    "ASSIGNED": "ASSIGNED"
+    "ASSIGNED": "ASSIGNED",
+    "SHIPPED": "SHIPPED"
   },
   "STATE": {
     "EN_ROUTE_TO_PA": "En route to Pick Up",

@@ -103,3 +103,12 @@
     </div>
   </li>
 </ul>
+<ul class="assigned-loads">
+  <li *ngFor="let load of assignedLoads">
+    <app-assigned-loads
+      (updatedAssign)="this.assignedLoads = $event"
+      [(assignedLoads)]="assignedLoads"
+      [load]="load"
+    ></app-assigned-loads>
+  </li>
+</ul>

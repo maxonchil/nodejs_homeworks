@@ -2,11 +2,7 @@ import { ActivatedRoute } from "@angular/router";
 import { environment as env } from "./../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  Validators
-} from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-driver",
@@ -15,6 +11,7 @@ import {
 })
 export class DriverComponent implements OnInit {
   userTrucks: any[] = this.getLsItem("userData").customData.trucks;
+  assignedLoads: any[] = this.getLsItem("userData").customData.assignedLoads;
 
   trucks = new FormGroup({
     truck: new FormControl("", [Validators.required]),

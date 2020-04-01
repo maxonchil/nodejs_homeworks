@@ -1,8 +1,11 @@
 const { Truck } = require("../Schemas/truck.schema");
 
-const banTrucksEdit = async () => {
+const banTrucksEdit = async driverID => {
   try {
-    return await Truck.updateMany({ edit: true }, { edit: false });
+    return await Truck.updateMany(
+      { created_by: driverID, edit: true },
+      { edit: false }
+    );
   } catch (error) {
     return null;
   }

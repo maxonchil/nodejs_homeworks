@@ -1,8 +1,8 @@
 const { Truck } = require("../Schemas/truck.schema");
 
-const checkForEdit = async () => {
+const checkForEdit = async userID => {
   try {
-    const result = await Truck.findOne({ edit: false });
+    const result = await Truck.findOne({ created_by: userID, edit: false });
     if (result !== null) {
       return null;
     }

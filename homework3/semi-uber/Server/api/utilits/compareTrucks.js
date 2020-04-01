@@ -3,14 +3,13 @@ const { trucksStatuses } = require("../../data/trucksData.json");
 const { IN_SERVISE } = trucksStatuses;
 
 const compareTrucks = async (dimensions, payload) => {
-  console.log(IN_SERVISE);
   const {
     width: loadWidth,
     height: loadHeight,
     length: loadLength
   } = dimensions;
   const loadPayload = payload;
-  console.log(dimensions, loadPayload);
+
   try {
     return await Truck.findOne({
       status: IN_SERVISE,

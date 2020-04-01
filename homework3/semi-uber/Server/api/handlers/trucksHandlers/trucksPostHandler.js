@@ -25,7 +25,7 @@ const trucksPostHandler = async (req, res) => {
     return errorHandler(error.message, res);
   }
 
-  const editChek = await checkForEdit();
+  const editChek = await checkForEdit(userID);
 
   if (editChek === null) {
     return errorHandler(

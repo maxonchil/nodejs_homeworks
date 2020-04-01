@@ -49,7 +49,21 @@
   &__title {
     text-align: center;
   }
-  &__title, &__name, &__assigned, &__status, &__type, &__width, &__height, &__length, &__payload {
+  &__title,
+  &__name,
+  &__assigned,
+  &__status,
+  &__type,
+  &__width,
+  &__height,
+  &__length,
+  &__payload {
     margin: 5px 0;
   }
+}
+.assigned-loads {
+  list-style-type: none;
+
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -4,21 +4,10 @@ const saltRounds = Number(config.get("saltRounds"));
 const jwt = require("jsonwebtoken");
 const log4js = require("log4js");
 const logger = log4js.getLogger();
-const { User, userSchemaValidation } = require("../../Schemas/user.schema");
+const { userSchemaValidation } = require("../../Schemas/user.schema");
 const errorHandler = require("../error.handler");
 const hashPassword = require("../../utilits/hashPassword");
-
-
-
-const createUser = (name, username, password, email, status) => {
-  return new User({
-    name,
-    username,
-    password,
-    email,
-    status
-  });
-};
+const createUser = require("../../utilits/createUser");
 
 const registrationPostHandler = (req, res) => {
   const { value, error } = userSchemaValidation.validate(req.body);

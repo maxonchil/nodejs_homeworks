@@ -29,7 +29,7 @@ const trucksPatchHandler = async (req, res) => {
   }
 
   logger.info("Truck was succesfully assigned");
-  
+
   res.json({
     success: true,
     data: userID,

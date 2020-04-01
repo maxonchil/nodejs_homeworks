@@ -18,6 +18,7 @@ import { DriverComponent } from "./driver/driver.component";
 import { AssignTruckComponent } from "./assign-truck/assign-truck.component";
 import { DeleteTruckComponent } from './delete-truck/delete-truck.component';
 import { UpdateTruckComponent } from './update-truck/update-truck.component';
+import { AssignedLoadsComponent } from './assigned-loads/assigned-loads.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UpdateTruckComponent } from './update-truck/update-truck.component';
     DriverComponent,
     AssignTruckComponent,
     DeleteTruckComponent,
-    UpdateTruckComponent
+    UpdateTruckComponent,
+    AssignedLoadsComponent
   ],
   imports: [
     BrowserModule,

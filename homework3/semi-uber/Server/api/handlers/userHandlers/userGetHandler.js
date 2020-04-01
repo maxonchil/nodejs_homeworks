@@ -36,7 +36,7 @@ const userGetHandler = async (req, res) => {
     username,
     email,
     status,
-    customData
+    customData 
   };
   
   logger.info("User data successfully received");
