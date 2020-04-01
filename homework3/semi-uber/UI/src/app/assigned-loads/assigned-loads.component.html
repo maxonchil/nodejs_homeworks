@@ -21,7 +21,10 @@
   <div class="assigned-loads__payload">
     <span class="assigned-loads__span">Payload: </span>{{ load.payload }}
   </div>
-  <button (click)="arrived(load)" class="assigned-loads__button button">
+  <button
+    (click)="arrived(load)"
+    class="assigned-loads__button button"
+  >
     Arrived to delivery
   </button>
   <div *ngIf="errorMessage">{{ errorMessage }}</div>

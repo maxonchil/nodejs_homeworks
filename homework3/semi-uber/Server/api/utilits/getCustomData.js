@@ -12,8 +12,8 @@ async function getCustomData(stats, userID) {
   } else {
     try {
       const trucks = await Truck.find({ created_by: userID });
-      const assignedLoads = await Load.find({ assigned_to: userID });
-      return { trucks, assignedLoads };
+      const assigned_loads = await Load.find({ assigned_to: userID });
+      return { trucks, assigned_loads };
     } catch (error) {
       return error;
     }

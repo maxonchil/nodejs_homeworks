@@ -5,13 +5,14 @@ const trucksPostHandler = require("../handlers/trucksHandlers/trucksPostHandler"
 const trucksPatchHandler = require("../handlers/trucksHandlers/trucksPatchHandler");
 const trucksDeleteHandler = require("../handlers/trucksHandlers/trucksDeleteHandler");
 const trucksPutHandler = require("../handlers/trucksHandlers/trucksPutHandler");
+const tokenAuth = require("../middlewars/tokenAuth");
 
-router.post("/", writeLog, trucksPostHandler);
+router.post("/", writeLog, tokenAuth, trucksPostHandler);
 
-router.patch("/", writeLog, trucksPatchHandler);
+router.patch("/", writeLog, tokenAuth, trucksPatchHandler);
 
-router.delete("/", writeLog, trucksDeleteHandler);
+router.delete("/", writeLog, tokenAuth, trucksDeleteHandler);
 
-router.put("/", writeLog, trucksPutHandler);
+router.put("/", writeLog, tokenAuth, trucksPutHandler);
 
 module.exports = router;

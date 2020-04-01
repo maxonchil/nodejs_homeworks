@@ -11,8 +11,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 })
 export class AssignedLoadsComponent implements OnInit {
   @Input() load: any;
-  @Input() assignedLoads: any;
+  @Input() assigned_loads: any;
+  @Input() userTrucks: any;
   @Output() updatedAssign = new EventEmitter();
+  @Output() updatedUserTrucks = new EventEmitter();
   errorMessage: any;
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
@@ -24,8 +26,13 @@ export class AssignedLoadsComponent implements OnInit {
 
   arrived({ _id: loadID }) {
     const driverID = this.route.snapshot.params.id;
+    const token = localStorage.getItem("JWT");
     this.http
-      .patch(`${env.baseURL}/service`, { loadID, driverID })
+      .patch(
+        `${env.baseURL}/service`,
+        { loadID, driverID },
+        { headers: { token } }
+      )
       .subscribe((res: any) => {
         if (res.success) {
           return this.removeAssignedLoad();
@@ -36,10 +43,18 @@ export class AssignedLoadsComponent implements OnInit {
 
   removeAssignedLoad() {
     const userData = this.getLsItem("userData");
-    userData.customData.assignedLoads = [];
+    userData.customData.assigned_loads = [];
     localStorage.setItem("userData", JSON.stringify(userData));
 
-    this.assignedLoads = [];
-    this.updatedAssign.emit(this.assignedLoads);
+    this.userTrucks.map((truck: any) => {
+      if (truck.status === "OL") {
+        return (truck.status = "IS");
+      }
+      return truck;
+    });
+
+    this.assigned_loads = [];
+    this.updatedAssign.emit(this.assigned_loads);
+    this.updatedUserTrucks.emit(this.userTrucks);
   }
 }

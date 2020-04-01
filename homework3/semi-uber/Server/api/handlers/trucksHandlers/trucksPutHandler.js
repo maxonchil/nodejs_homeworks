@@ -12,7 +12,7 @@ const trucksPutHandler = (req, res) => {
   )
     .then(result => {
       if (result === null) {
-        return errorHandler("Assigned tucks can not be edited", res);
+        return errorHandler("Can not edit truck. Edit error", res);
       } else {
         logger.info("Truck was updated!");
         res.json({

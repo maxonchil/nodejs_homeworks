@@ -17,6 +17,7 @@ const servicePatchHandler = async (req, res) => {
     updatedLoad = await Load.findByIdAndUpdate(loadID, {
       state: STATE.ARRIVED_TO_D,
       status: STATUS.SHIPPED,
+      assigned_to: null,
       $push: { logs: logMessage(`Load on status ${STATUS.SHIPPED}`) }
     });
   } catch (error) {

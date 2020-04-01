@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class DriverComponent implements OnInit {
   userTrucks: any[] = this.getLsItem("userData").customData.trucks;
-  assignedLoads: any[] = this.getLsItem("userData").customData.assignedLoads;
+  assigned_loads: any[] = this.getLsItem("userData").customData.assigned_loads;
 
   trucks = new FormGroup({
     truck: new FormControl("", [Validators.required]),
@@ -27,12 +27,17 @@ export class DriverComponent implements OnInit {
 
   addTruck() {
     const userID = this.route.snapshot.paramMap.get("id");
+    const token = localStorage.getItem("JWT");
     const truckData = {
       truckType: this.trucks.get("truck").value,
       truckName: this.trucks.get("name").value
     };
     this.http
-      .post(`${env.baseURL}/trucks`, { truckData, userID })
+      .post(
+        `${env.baseURL}/trucks`,
+        { truckData, userID },
+        { headers: { token } }
+      )
       .subscribe((res: any) => this.updateTrucks(res.data));
   }
 

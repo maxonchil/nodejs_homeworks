@@ -19,13 +19,14 @@ export class UpdateLoadComponent implements OnInit {
   ngOnInit(): void {}
 
   updateLoad({ _id: id }) {
+    const token = localStorage.getItem("JWT");
     const { dimensions, payload } = this.userLoads.find(e => e._id === id);
     dimensions.width = Number(dimensions.width);
     dimensions.height = Number(dimensions.height);
     dimensions.length = Number(dimensions.length);
     const postBody = { dimensions, payload, id };
     this.http
-      .put(`${env.baseURL}/loads`, postBody)
+      .put(`${env.baseURL}/loads`, postBody, { headers: { token } })
       .subscribe((res: any) => (this.updateStatus = res.data.status));
   }
 }

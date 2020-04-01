@@ -36,7 +36,7 @@
 <ul class="loads">
   <li *ngFor="let load of userLoads" class="loads__item load-card">
     <div class="load-card__title">Load id: {{ load._id }}</div>
-    <div class="load-card__asigned">
+    <div *ngIf="load.assigned_to" class="load-card__asigned">
       <span class="load-card__prop">Assigned to: </span>{{ load.assigned_to }}
     </div>
     <div class="load-card__status">
@@ -88,8 +88,7 @@
       </li>
     </ul>
     <div *ngIf="load.status !== 'NEW'" class="load-card__height">
-      <span class="load-card__prop">Payload: </span
-      >{{ load.payload }}
+      <span class="load-card__prop">Payload: </span>{{ load.payload }}
     </div>
     <div *ngIf="load.status === 'NEW'" class="load-card__payload">
       <label class="load-card__prop"
@@ -97,13 +96,20 @@
         <input class="load-card__input" [(ngModel)]="load.payload" type="text"
       /></label>
     </div>
-    <div class="load-card__buttons" *ngIf="load.status === 'NEW'">
+    <div class="load-card__update" *ngIf="load.status === 'NEW'">
       <app-update-load
         [loadGroup]="loadGroup.value"
         [userLoads]="userLoads"
         [load]="load"
       ></app-update-load>
+    </div>
+    <div *ngIf="load.status === 'NEW'" class="load-card__post">
       <app-post-load [userLoads]="userLoads" [load]="load"></app-post-load>
+    </div>
+    <div
+      *ngIf="load.status === 'NEW' || load.status === 'SHIPPED'"
+      class="load-card__delete"
+    >
       <app-delete-load
         [(userLoads)]="userLoads"
         [load]="load"

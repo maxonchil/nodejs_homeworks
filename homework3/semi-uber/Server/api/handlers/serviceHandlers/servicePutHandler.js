@@ -10,7 +10,8 @@ const loadsPatchHandler = async (req, res) => {
 
   if (load === null) {
     return errorHandler(
-      `Only loads woth status ${STATUS.NEW} could be updated`
+      `Only loads woth status ${STATUS.NEW} could be updated`,
+      res
     );
   }
 

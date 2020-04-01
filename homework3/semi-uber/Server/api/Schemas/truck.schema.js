@@ -3,6 +3,7 @@ const Joi = require("@hapi/joi");
 const Schema = mongoose.Schema;
 const { trucksStatuses } = require("../../data/trucksData.json");
 const { IN_SERVISE } = trucksStatuses;
+const dimensionsSchema = require("./dimensions.schema");
 
 const Truck = new Schema({
   created_by: { type: String },
@@ -22,7 +23,7 @@ const truckSchemaValidation = Joi.object({
   type: Joi.string()
     .required()
     .min(3),
-  dimensions: Joi.object().required(),
+  dimensions: dimensionsSchema,
   payload: Joi.number().required(),
   name: Joi.string()
     .required()

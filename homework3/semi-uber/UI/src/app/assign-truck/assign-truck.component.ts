@@ -24,8 +24,13 @@ export class AssignTruckComponent implements OnInit {
 
   asignTruck({ _id: id }) {
     const userID = this.route.snapshot.params.id;
+    const token = localStorage.getItem("JWT");
     this.http
-      .patch(`${env.baseURL}/trucks`, { truckID: id, userID })
+      .patch(
+        `${env.baseURL}/trucks`,
+        { truckID: id, userID },
+        { headers: { token } }
+      )
       .subscribe((res: any) => this.updateAssignStatus(res.data, id));
   }
 

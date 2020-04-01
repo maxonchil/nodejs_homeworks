@@ -18,8 +18,9 @@ export class PostLoadComponent implements OnInit {
   ngOnInit(): void {}
 
   postLoad({ _id: id }) {
+    const token = localStorage.getItem("JWT");
     this.http
-      .put(`${env.baseURL}/service`, { loadID: id })
+      .put(`${env.baseURL}/service`, { loadID: id }, { headers: { token } })
       .subscribe((res: any) => {
         if (res.success) {
           return this.changeLoadStatus(res, id);

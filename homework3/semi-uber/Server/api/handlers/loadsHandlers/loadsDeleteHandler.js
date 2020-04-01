@@ -6,15 +6,23 @@ const { STATUS } = require("../../../data/loadData.json");
 
 const loadsDeleteHandler = (req, res) => {
   const loadID = req.headers["load"];
-  Load.findOneAndRemove({ _id: loadID, status: STATUS.NEW })
-    .then(() => logger.info("Load was successfully deleted"))
-    .then(() =>
+  Load.findOneAndRemove({
+    _id: loadID,
+    status: { $in: [STATUS.NEW, STATUS.SHIPPED] }
+  })
+    .then(result => {
+      if (result === null) {
+        throw new Error(
+          `Only loads with status ${STATUS.NEW} and ${STATUS.SHIPPED} could be deleted`
+        );
+      }
+      logger.info("Load was successfully deleted");
       res.json({
         success: true,
         data: null,
         error: null
-      })
-    )
+      });
+    })
     .catch(error => errorHandler(error.message, res));
 };
 

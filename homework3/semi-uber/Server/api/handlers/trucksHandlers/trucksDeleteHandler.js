@@ -10,7 +10,7 @@ const trucksDeleteHandler = (req, res) => {
     .then(result => {
       if (result === null) {
         errorHandler(
-          "Profile info can not be edited, when some of trucks is status 'OL'",
+          "Profile info can not be edited, when some of trucks is status 'OL' or truck is assigned",
           res
         );
       } else {

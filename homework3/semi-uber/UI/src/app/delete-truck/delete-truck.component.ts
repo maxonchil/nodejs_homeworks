@@ -21,10 +21,12 @@ export class DeleteTruckComponent implements OnInit {
   }
 
   deleteTruck({ _id: id }) {
+    const token = localStorage.getItem("JWT");
     this.http
       .delete(`${env.baseURL}/trucks`, {
         headers: {
-          truck: id
+          truck: id,
+          token
         }
       })
       .subscribe(res => this.removeTruck(id));
