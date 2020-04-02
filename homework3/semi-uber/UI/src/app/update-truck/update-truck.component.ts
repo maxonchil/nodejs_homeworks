@@ -15,12 +15,12 @@ export class UpdateTruckComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  updateTruck({ name: updatedName, _id: truckID }) {
+  updateTruck({ name: updatedName, _id: truckID, created_by: userID }) {
     const token = localStorage.getItem("JWT");
     this.http
       .put(
         `${env.baseURL}/trucks`,
-        { updatedName, truckID },
+        { userID, updatedName, truckID },
         { headers: { token } }
       )
       .subscribe(console.log);

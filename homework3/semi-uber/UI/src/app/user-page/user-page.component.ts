@@ -19,11 +19,12 @@ export class UserPageComponent implements OnInit {
 
   getUserData() {
     const token = localStorage.getItem("JWT");
-    const id = this.route.snapshot.paramMap.get("id");
+    const userID = this.route.snapshot.paramMap.get("id");
     this.http
-      .get(`${env.baseURL}/user/${id}`, {
+      .get(`${env.baseURL}/user/${userID}`, {
         headers: {
-          token
+          token,
+          userID
         }
       })
       .subscribe((res: any) => {

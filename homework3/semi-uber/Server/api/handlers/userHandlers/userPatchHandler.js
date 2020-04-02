@@ -7,9 +7,10 @@ const success = require("../../utilits/successResponse");
 const { USER_LOGS } = require("../../../data/usersData.json");
 
 async function userPatchHandler(req, res) {
-  const { newPassword, id: userID } = req.body;
+  const { newPassword, userID } = req.body;
   let hashedPass;
 
+  
   try {
     hashedPass = await hashPassword(newPassword, saltRounds);
   } catch (error) {

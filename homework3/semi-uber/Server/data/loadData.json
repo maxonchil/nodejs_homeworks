@@ -21,7 +21,7 @@
     "ADDED": "New load was added",
     "UPDATED": "Load updated!",
     "ASSIGNED": "Load was assigned at truck",
-    "ERROR_SHIPPED": "Load was allready shipped",
+    "ERROR_POSTED": "Post errot! Can not post load",
     "ERROR_EDIT": "Edit error! Can not edit this load!",
     "ERROR_DELETE": "Delete error! Can not delete this load!",
     "ERROR_UPDATE": "Update error! Can not update this load!",

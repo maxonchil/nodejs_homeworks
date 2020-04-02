@@ -25,12 +25,12 @@ export class AssignedLoadsComponent implements OnInit {
   }
 
   arrived({ _id: loadID }) {
-    const driverID = this.route.snapshot.params.id;
+    const userID = this.route.snapshot.params.id;
     const token = localStorage.getItem("JWT");
     this.http
       .patch(
         `${env.baseURL}/service`,
-        { loadID, driverID },
+        { loadID, userID },
         { headers: { token } }
       )
       .subscribe((res: any) => {

@@ -42,9 +42,9 @@ export class ShipperComponent implements OnInit {
 
   addLoad() {
     const token = localStorage.getItem("JWT");
-    const id = this.route.snapshot.paramMap.get("id");
+    const userID = this.route.snapshot.paramMap.get("id");
     const loadData = {
-      id,
+      userID,
       dimensions: {
         width: this.loadGroup.get("width").value,
         height: this.loadGroup.get("height").value,

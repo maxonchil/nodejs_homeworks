@@ -11,6 +11,7 @@ const loginPostHandler = async (req, res) => {
   const { password, username } = req.body;
   let user;
   let token;
+  let comparedPass;
 
   try {
     user = await User.findOne({ username });
@@ -25,9 +26,13 @@ const loginPostHandler = async (req, res) => {
   }
 
   try {
-    await bcrypt.compare(password, user.password);
+    comparedPass = await bcrypt.compare(password, user.password);
   } catch (error) {
     return errorHandler(error.message, res);
+  }
+
+  if (!comparedPass) {
+    return errorHandler(USER_LOGS.LOGIN_FAILED, res);
   }
 
   res.json(success(USER_LOGS.LOGIN_SUCCESS, { id: user.id, token }));

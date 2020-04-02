@@ -17,6 +17,7 @@ const userGetHandler = async (req, res) => {
   if (pageID !== userID) {
     return errorHandler(USER_LOGS.ERROR_ACCESS, res);
   }
+  
   try {
     user = await User.findById(userID);
   } catch (error) {

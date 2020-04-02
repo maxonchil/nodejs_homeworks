@@ -5,9 +5,9 @@ const success = require("../../utilits/successResponse");
 const { LOAD_LOGS } = require("../../../data/loadData.json");
 
 const loadsPostHandler = (req, res) => {
-  const { id, dimensions, payload } = req.body;
+  const { userID, dimensions, payload } = req.body;
   const load = {
-    created_by: id,
+    created_by: userID,
     logs: [logMessage(LOAD_LOGS.CREATED)],
     dimensions,
     payload

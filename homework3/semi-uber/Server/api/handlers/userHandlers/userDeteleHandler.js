@@ -10,9 +10,11 @@ async function userDeleteHandler(req, res) {
   const { id: userID } = req.params;
 
   const editCheck = await checkForEdit(userID);
+
   if (editCheck === null) {
     return errorHandler(USER_LOGS.ERROR_DELETE, res);
   }
+  
   const user = await User.findByIdAndDelete(userID);
 
   if (user.status === USER_STATUS.SHIPPER) {

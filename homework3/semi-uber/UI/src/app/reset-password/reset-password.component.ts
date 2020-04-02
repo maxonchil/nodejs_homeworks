@@ -36,13 +36,13 @@ export class ResetPasswordComponent implements OnInit {
     this.showChangePass = !this.showChangePass;
   }
   changePassword() {
-    const id = this.route.snapshot.paramMap.get("id");
+    const userID = this.route.snapshot.paramMap.get("id");
     const newPassword = this.changePasswordForm.get("newPassword").value;
     const token = localStorage.getItem("JWT");
     this.http
       .patch(
-        `${env.baseURL}/user/${id}`,
-        { id, newPassword },
+        `${env.baseURL}/user/${userID}`,
+        { userID, newPassword },
         { headers: { token } }
       )
       .subscribe((res: any) => {
@@ -52,11 +52,12 @@ export class ResetPasswordComponent implements OnInit {
   }
   deleteAccount() {
     const token = localStorage.getItem("JWT");
-    const id: string = this.route.snapshot.paramMap.get("id");
+    const userID: string = this.route.snapshot.paramMap.get("id");
     this.http
-      .delete(`${env.baseURL}/user/${id}`, {
+      .delete(`${env.baseURL}/user/${userID}`, {
         headers: {
-          token
+          token,
+          userID
         }
       })
       .subscribe((res: any) => {
