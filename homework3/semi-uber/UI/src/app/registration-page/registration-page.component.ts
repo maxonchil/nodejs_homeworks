@@ -16,6 +16,8 @@ export class RegistrationPageComponent implements OnInit {
   pasRegexp: "(?=^.{6,}$)((?=.*d)(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*";
   logRegexp: ".{5,10}";
 
+  regFail = false;
+
   userData = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(2)]),
     username: new FormControl("", [
@@ -68,8 +70,12 @@ export class RegistrationPageComponent implements OnInit {
     this.http
       .post(`${env.baseURL}/registration`, this.user, { observe: "response" })
       .subscribe((res: any) => {
-        localStorage.setItem("JWT", res.body.data.token);
-        this.router.navigate(["/user", res.body.data.id]);
+        if (!res.body.success) {
+          console.log(res.body.success);
+        } else {
+          localStorage.setItem("JWT", res.body.data.token);
+          this.router.navigate(["/user", res.body.data.id]);
+        }
       });
   }
 }

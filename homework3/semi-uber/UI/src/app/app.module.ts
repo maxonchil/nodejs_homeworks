@@ -16,6 +16,8 @@ import { PostLoadComponent } from "./post-load/post-load.component";
 import { UpdateLoadComponent } from "./update-load/update-load.component";
 import { DriverComponent } from "./driver/driver.component";
 import { AssignTruckComponent } from "./assign-truck/assign-truck.component";
+import { DeleteTruckComponent } from './delete-truck/delete-truck.component';
+import { UpdateTruckComponent } from './update-truck/update-truck.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AssignTruckComponent } from "./assign-truck/assign-truck.component";
     PostLoadComponent,
     UpdateLoadComponent,
     DriverComponent,
-    AssignTruckComponent
+    AssignTruckComponent,
+    DeleteTruckComponent,
+    UpdateTruckComponent
   ],
   imports: [
     BrowserModule,

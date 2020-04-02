@@ -50,15 +50,21 @@
       <li class="truck-card__title">
         <span class="truck-card__span">Truck id:</span>{{ truck._id }}
       </li>
-      <li class="truck-card__name">
-        <span class="truck-card__span">Track name: </span>{{ truck.name }}
+
+      <li *ngIf="truck.assigned_to" class="truck-card__name">
+        <span class="truck-card__span">Truck name: </span>{{ truck.name }}
+      </li>
+      <li *ngIf="!truck.assigned_to" class="truck-card__name">
+        <span class="truck-card__span">Truck name: </span>
+        <input class="truck-card__input" [(ngModel)]="truck.name" type="text" />
       </li>
       <li *ngIf="truck.assigned_to" class="truck-card__assigned">
         <span class="truck-card__span">Assigned to: </span
         >{{ truck.assigned_to }}
       </li>
       <li class="truck-card__status">
-        <span class="truck-card__span">Status: </span>{{ truck.status }}
+        <span class="truck-card__span">Status: </span>
+        {{ truck.status }}
       </li>
       <li class="truck-card__type">
         <span class="truck-card__span">Type: </span>{{ truck.type }}
@@ -85,6 +91,15 @@
         [truck]="truck"
         (assigned)="this.userTrucks = $event"
       ></app-assign-truck>
+      <app-delete-truck
+        (updateUserTrucks)="this.userTrucks = $event"
+        [(userTrucks)]="userTrucks"
+        [truck]="truck"
+      ></app-delete-truck>
+      <app-update-truck
+        [(userTrucks)]="userTrucks"
+        [truck]="truck"
+      ></app-update-truck>
     </div>
   </li>
 </ul>

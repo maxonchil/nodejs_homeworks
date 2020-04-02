@@ -13,7 +13,6 @@ const hashPassword = (password, saltRounds) => {
 async function userPatchHandler(req, res) {
   const { newPassword, id: userID } = req.body;
   let hashedPass;
-  let updatedUser;
 
   try {
     hashedPass = await hashPassword(newPassword, saltRounds);
@@ -22,7 +21,7 @@ async function userPatchHandler(req, res) {
   }
 
   try {
-    updatedUser = await User.findByIdAndUpdate(userID, {
+    await User.findByIdAndUpdate(userID, {
       password: hashedPass
     });
   } catch (error) {
