@@ -5,26 +5,7 @@ const { User } = require("../../Schemas/user.schema");
 const jwt = require("jsonwebtoken");
 const { secret } = config.get("JWT");
 const errorHandler = require("../error.handler");
-const { Load } = require("../../Schemas/load.schema");
-const { Truck } = require("../../Schemas/truck.schema");
-
-async function getCustomData(stats, userID) {
-  if (stats === "Shipper") {
-    try {
-      const loads = await Load.find({ created_by: userID });
-      return { loads };
-    } catch (error) {
-      return error;
-    }
-  } else {
-    try {
-      const trucks = await Truck.find({ created_by: userID });
-      return { trucks };
-    } catch (error) {
-      return error;
-    }
-  }
-}
+const getCustomData = require("../../utilits/getCustomData");
 
 const userGetHandler = async (req, res) => {
   const pageID = req.params.id;
@@ -55,8 +36,9 @@ const userGetHandler = async (req, res) => {
     username,
     email,
     status,
-    customData
+    customData 
   };
+  
   logger.info("User data successfully received");
 
   res.json({

@@ -15,6 +15,7 @@ export class ResetPasswordComponent implements OnInit {
   pasRegexp: "(?=^.{6,}$)((?=.*d)(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*";
   showChangePass: boolean = false;
   statusOfPassChange: string;
+  errorMessage: string;
 
   changePasswordForm = new FormGroup({
     newPassword: new FormControl("", [
@@ -37,18 +38,35 @@ export class ResetPasswordComponent implements OnInit {
   changePassword() {
     const id = this.route.snapshot.paramMap.get("id");
     const newPassword = this.changePasswordForm.get("newPassword").value;
+    const token = localStorage.getItem("JWT");
     this.http
-      .patch(`${env.baseURL}/user/${id}`, { id, newPassword })
+      .patch(
+        `${env.baseURL}/user/${id}`,
+        { id, newPassword },
+        { headers: { token } }
+      )
       .subscribe((res: any) => {
         this.statusOfPassChange = res.message;
         this.showChangePass = false;
       });
   }
   deleteAccount() {
+    const token = localStorage.getItem("JWT");
     const id: string = this.route.snapshot.paramMap.get("id");
-    this.http.delete(`${env.baseURL}/user/${id}`).subscribe(() => {
-      this.router.navigate(["/"]);
-      localStorage.removeItem("JWT");
-    });
+    this.http
+      .delete(`${env.baseURL}/user/${id}`, {
+        headers: {
+          token
+        }
+      })
+      .subscribe((res: any) => {
+        if (res.success) {
+          this.router.navigate(["/"]);
+          localStorage.removeItem("JWT");
+          localStorage.removeItem("userData");
+        } else {
+          this.errorMessage = res.error.message;
+        }
+      });
   }
 }

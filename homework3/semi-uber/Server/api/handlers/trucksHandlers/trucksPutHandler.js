@@ -7,12 +7,12 @@ const trucksPutHandler = (req, res) => {
   const { truckID, updatedName } = req.body;
 
   Truck.findOneAndUpdate(
-    { _id: truckID, assigned_to: null },
+    { _id: truckID, assigned_to: null, edit: true },
     { name: updatedName }
   )
     .then(result => {
       if (result === null) {
-        return errorHandler("Assigned tucks can not be edited", res);
+        return errorHandler("Can not edit truck. Edit error", res);
       } else {
         logger.info("Truck was updated!");
         res.json({

@@ -41,6 +41,7 @@ export class ShipperComponent implements OnInit {
   }
 
   addLoad() {
+    const token = localStorage.getItem("JWT");
     const id = this.route.snapshot.paramMap.get("id");
     const loadData = {
       id,
@@ -52,9 +53,11 @@ export class ShipperComponent implements OnInit {
       payload: this.loadGroup.get("payload").value
     };
 
-    this.http.post(`${env.baseURL}/loads`, loadData).subscribe((res: any) => {
-      this.updateLoads(res.data);
-    });
+    this.http
+      .post(`${env.baseURL}/loads`, loadData, { headers: { token } })
+      .subscribe((res: any) => {
+        this.updateLoads(res.data);
+      });
   }
 
   updateLoads(newLoad: object) {

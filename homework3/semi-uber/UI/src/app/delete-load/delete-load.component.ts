@@ -22,10 +22,12 @@ export class DeleteLoadComponent implements OnInit {
   }
 
   deleteLoad({ _id: id }) {
+    const token = localStorage.getItem("JWT");
     this.http
       .delete(`${env.baseURL}/loads`, {
         headers: {
-          load: id
+          load: id,
+          token
         }
       })
       .subscribe(res => this.removeLoad(id));

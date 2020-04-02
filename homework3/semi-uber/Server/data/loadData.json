@@ -1,0 +1,14 @@
+{
+  "STATUS": {
+    "NEW": "NEW",
+    "POSTED": "POSTED",
+    "ASSIGNED": "ASSIGNED",
+    "SHIPPED": "SHIPPED"
+  },
+  "STATE": {
+    "EN_ROUTE_TO_PA": "En route to Pick Up",
+    "ARRIVED_TO_PA": "Arrived to Pick Up",
+    "EN_ROUTE_TO_D": "Arrived to delivery",
+    "ARRIVED_TO_D": "Arrived to delivery"
+  }
+}

@@ -1,30 +1,13 @@
 const config = require("config");
 const { secret } = config.get("JWT");
 const saltRounds = Number(config.get("saltRounds"));
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const log4js = require("log4js");
 const logger = log4js.getLogger();
-const { User, userSchemaValidation } = require("../../Schemas/user.schema");
+const { userSchemaValidation } = require("../../Schemas/user.schema");
 const errorHandler = require("../error.handler");
-
-const hashPassword = (password, saltRounds) => {
-  return bcrypt.hash(password, saltRounds);
-};
-
-const createToken = (body, secret) => {
-  return jwt.sign(body, secret);
-};
-
-const createUser = (name, username, password, email, status) => {
-  return new User({
-    name,
-    username,
-    password,
-    email,
-    status
-  });
-};
+const hashPassword = require("../../utilits/hashPassword");
+const createUser = require("../../utilits/createUser");
 
 const registrationPostHandler = (req, res) => {
   const { value, error } = userSchemaValidation.validate(req.body);
@@ -41,7 +24,7 @@ const registrationPostHandler = (req, res) => {
       logger.info("New user added to BD and token was sended");
       res.json({
         success: true,
-        data: { id, token: createToken(id, secret) },
+        data: { id, token: jwt.sign(id, secret) },
         error: null
       });
     })
