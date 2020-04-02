@@ -8,12 +8,12 @@ const changeLoadStatus = async (_id, from, updatedStatus) => {
     const result = await Load.findOneAndUpdate(
       { _id, status: from },
       {
-        $push: { logs: logMessage(`Load on status ${updatedStatus}`) },
+        $push: { logs: logMessage(`Load status is ${updatedStatus}`) },
         status: updatedStatus
       },
       { new: true }
     );
-    logger.info(`Load status ${updatedStatus}`);
+    logger.info(`Load status is ${updatedStatus}`);
     return result;
   } catch (error) {
     return null;

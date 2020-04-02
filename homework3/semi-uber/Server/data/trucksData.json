@@ -1,9 +1,12 @@
 {
-  "trucksStatuses": {
-    "IN_SERVISE": "IS",
-    "ON_LOAD": "OL"
+  "TRUCK_ASSIGNED_DEFAULT": null,
+  "TRUCK_EDIT_DEFAULT": true,
+  "TRUCK_STATUS": {
+    "IN_SERVICE": "IS",
+    "ON_LOAD": "OL",
+    "UPDATED": "Updated"
   },
-  "trucksParams": {
+  "TRUCK_PARAMS": {
     "SPRINTER": {
       "width": 300,
       "length": 250,
@@ -22,5 +25,14 @@
       "height": 200,
       "payload": 4000
     }
+  },
+  "TRUCK_LOGS": {
+    "UPDATED": "Truck was updated!",
+    "CREATED": "New truck was successfully created",
+    "ASSIGNED": "Truck was succesfully assigned",
+    "UNASSIGNED": "Unassigned previous truck",
+    "DELETED": "Truck was succesfully delteted!",
+    "ERROR_EDIT": "Edit trucks info is posible now!",
+    "ERROR_DELETE": "Delete error! Can not delete this truck!"
   }
 }

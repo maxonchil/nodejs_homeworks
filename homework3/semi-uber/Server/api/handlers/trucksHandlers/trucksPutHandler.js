@@ -1,7 +1,7 @@
 const { Truck } = require("../../Schemas/truck.schema");
-const log4js = require("log4js");
-const logger = log4js.getLogger();
 const errorHandler = require("../error.handler");
+const success = require("../../utilits/successResponse");
+const { TRUCK_LOGS } = require("../../../data/trucksData.json");
 
 const trucksPutHandler = (req, res) => {
   const { truckID, updatedName } = req.body;
@@ -12,14 +12,9 @@ const trucksPutHandler = (req, res) => {
   )
     .then(result => {
       if (result === null) {
-        return errorHandler("Can not edit truck. Edit error", res);
+        return errorHandler(TRUCK_LOGS.ERROR_EDIT, res);
       } else {
-        logger.info("Truck was updated!");
-        res.json({
-          success: true,
-          data: { status: "Updated" },
-          error: null
-        });
+        res.json(success(TRUCK_LOGS.UPDATED, { message: TRUCK_LOGS.UPDATED }));
       }
     })
     .catch(error => errorHandler(error.message, res));

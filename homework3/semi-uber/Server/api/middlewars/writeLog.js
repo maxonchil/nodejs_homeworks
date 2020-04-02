@@ -2,20 +2,23 @@ const fs = require("fs");
 const config = require("config");
 const log4js = require("log4js");
 const logger = log4js.getLogger();
-
+const errorHandler = require("../handlers/error.handler");
 const { logsPath } = config.get("webServer");
-const defaultDataStructure = {
-  logs: []
-};
+const {
+  LOGGER,
+  CHARSET,
+  DEFAULT_STRUCTURE,
+  LOGS
+} = require("../../data/logData.json");
 
-logger.level = "info";
+logger.level = LOGGER.LEVEL;
 
 const readFile = (filePath, encode) => {
   if (fs.existsSync(filePath)) {
     return JSON.parse(fs.readFileSync(filePath, encode));
   }
-  fs.writeFileSync(filePath, JSON.stringify(defaultDataStructure));
-  return defaultDataStructure;
+  fs.writeFileSync(filePath, JSON.stringify(DEFAULT_STRUCTURE));
+  return DEFAULT_STRUCTURE;
 };
 
 const updateData = (newData, filePath, logs) => {
@@ -23,9 +26,8 @@ const updateData = (newData, filePath, logs) => {
     logs.push(newData);
     logger.info(newData);
     fs.writeFileSync(filePath, JSON.stringify({ logs }));
-  } catch (err) {
-    console.error(err.name);
-    return;
+  } catch (error) {
+    return null;
   }
 };
 
@@ -36,8 +38,11 @@ const writeLog = (req, res, next) => {
     method,
     time: new Date().getTime()
   };
-  const { logs } = readFile(logsPath, "utf8");
-  updateData(newLog, logsPath, logs);
+  const { logs } = readFile(logsPath, CHARSET);
+  const updatedData = updateData(newLog, logsPath, logs);
+  if (updatedData === null) {
+    return errorHandler(LOGS.ERROR_LOG, res);
+  }
   next();
 };
 module.exports = writeLog;

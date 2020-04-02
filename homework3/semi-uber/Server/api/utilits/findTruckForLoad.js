@@ -4,7 +4,12 @@ const compareTrucks = require("./compareTrucks");
 const assignLoad = require("./assignLoad");
 const assignTruck = require("./assignTruck");
 const banTrucksEdit = require("./banTrucksEdit");
-const { STATUS, STATE } = require("../../data/loadData.json");
+const { TRUCK_STATUS } = require("../../data/trucksData.json");
+const {
+  LOAD_STATUS,
+  LOAD_STATE,
+  LOAD_LOGS
+} = require("../../data/loadData.json");
 
 const findTruckForLoad = async load => {
   const { dimensions, payload, _id: loadID } = load;
@@ -15,12 +20,12 @@ const findTruckForLoad = async load => {
     return null;
   }
 
-  logger.info("Truck for this load was found!");
+  logger.info(LOAD_LOGS.TRUCK_FOUNDED);
 
   const { _id: truckID, assigned_to: driverID } = truck;
   const asignedLoad = await assignLoad(loadID, driverID);
 
-  logger.info("Load status was updated to 'ASSIGNED'");
+  logger.info(`Load status is ${LOAD_STATUS.ASSIGNED}`);
 
   if (asignedLoad === null) {
     return null;
@@ -28,15 +33,15 @@ const findTruckForLoad = async load => {
 
   const assignedTruck = await assignTruck(truckID);
   const banedTrucks = await banTrucksEdit(driverID);
-  logger.info("Truck status was updated to OL");
+  logger.info(`Truck status is ${TRUCK_STATUS.ON_LOAD}`);
 
   if (assignedTruck === null || banedTrucks === null) {
     return null;
   }
 
   const loadUpdatedData = {
-    status: STATUS.ASSIGNED,
-    state: STATE.EN_ROUTE_TO_PA,
+    status: LOAD_STATUS.ASSIGNED,
+    state: LOAD_STATE.EN_ROUTE_TO_PA,
     assigned_to: driverID
   };
   return loadUpdatedData;

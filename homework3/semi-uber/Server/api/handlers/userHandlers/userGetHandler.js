@@ -1,11 +1,11 @@
 const config = require("config");
-const log4js = require("log4js");
-const logger = log4js.getLogger();
 const { User } = require("../../Schemas/user.schema");
 const jwt = require("jsonwebtoken");
 const { secret } = config.get("JWT");
 const errorHandler = require("../error.handler");
 const getCustomData = require("../../utilits/getCustomData");
+const success = require("../../utilits/successResponse");
+const { USER_LOGS } = require("../../../data/usersData.json");
 
 const userGetHandler = async (req, res) => {
   const pageID = req.params.id;
@@ -15,7 +15,7 @@ const userGetHandler = async (req, res) => {
   let customData;
 
   if (pageID !== userID) {
-    return errorHandler("Access rejected", res);
+    return errorHandler(USER_LOGS.ERROR_ACCESS, res);
   }
   try {
     user = await User.findById(userID);
@@ -36,15 +36,8 @@ const userGetHandler = async (req, res) => {
     username,
     email,
     status,
-    customData 
+    customData
   };
-  
-  logger.info("User data successfully received");
-
-  res.json({
-    success: true,
-    data: userData,
-    error: null
-  });
+  res.json(success(USER_LOGS.RECEIVED, userData));
 };
 module.exports = userGetHandler;

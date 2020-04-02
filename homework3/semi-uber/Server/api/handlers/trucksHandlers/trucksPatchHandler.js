@@ -2,9 +2,9 @@ const log4js = require("log4js");
 const logger = log4js.getLogger();
 const errorHandler = require("../error.handler");
 const { Truck } = require("../../Schemas/truck.schema");
-const { trucksStatuses } = require("../../../data/trucksData.json");
-const { ON_LOAD } = trucksStatuses;
+const { TRUCK_LOGS } = require("../../../data/trucksData.json");
 const checkForEdit = require("../../utilits/checkforEdit");
+const success = require("../../utilits/successResponse");
 
 const trucksPatchHandler = async (req, res) => {
   const { userID, truckID } = req.body;
@@ -14,7 +14,7 @@ const trucksPatchHandler = async (req, res) => {
   const editChek = await checkForEdit(userID);
 
   if (editChek === null) {
-    return errorHandler("Can not edit truck. Edit error!", res);
+    return errorHandler(TRUCK_LOGS.ERROR_EDIT, res);
   }
   try {
     unassignedTruck = await Truck.findOneAndUpdate(
@@ -25,7 +25,7 @@ const trucksPatchHandler = async (req, res) => {
     return errorHandler(error.message, res);
   }
   if (unassignedTruck !== null) {
-    logger.info("Unassigned previous truck");
+    logger.info(TRUCK_LOGS.UNASSIGNED);
   }
 
   try {
@@ -36,18 +36,10 @@ const trucksPatchHandler = async (req, res) => {
     return errorHandler(error.message, res);
   }
   if (assignedTruck === null) {
-    return errorHandler(
-      `Trucks info can not be edited, when one of them is in status ${ON_LOAD}`,
-      res
-    );
+    return errorHandler(TRUCK_LOGS.ERROR_EDIT, res);
   }
-  logger.info("Truck was succesfully assigned");
 
-  res.json({
-    success: true,
-    data: userID,
-    error: null
-  });
+  res.json(success(TRUCK_LOGS.ASSIGNED, userID));
 };
 
 module.exports = trucksPatchHandler;

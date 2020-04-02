@@ -1,11 +1,1 @@
-{
-  "logs": [
-    { "url": "/", "method": "GET", "time": 1585133023142 },
-    { "url": "/", "method": "GET", "time": 1585133039071 },
-    { "url": "/", "method": "OPTIONS", "time": 1585165220797 },
-    { "url": "/", "method": "POST", "time": 1585167513117 },
-    { "url": "/", "method": "POST", "time": 1585167580141 },
-    { "url": "/", "method": "POST", "time": 1585649695693 },
-    { "url": "/", "method": "POST", "time": 1585733135771 }
-  ]
-}
+{"logs":[{"url":"/5e85a91d8d7b4016cd72763d","method":"GET","time":1585820630128},{"url":"/5e85a91d8d7b4016cd72763d","method":"GET","time":1585820637410},{"url":"/5e85a91d8d7b4016cd72763d","method":"GET","time":1585821322270},{"url":"/","method":"DELETE","time":1585821324581},{"url":"/5e85a91d8d7b4016cd72763d","method":"GET","time":1585821562028},{"url":"/","method":"POST","time":1585821567270},{"url":"/","method":"POST","time":1585823021489},{"url":"/5e85bd2d3c9ecd2c39623ee8","method":"GET","time":1585823021585}]}

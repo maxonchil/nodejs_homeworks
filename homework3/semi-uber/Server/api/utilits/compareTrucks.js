@@ -1,6 +1,5 @@
 const { Truck } = require("../Schemas/truck.schema");
-const { trucksStatuses } = require("../../data/trucksData.json");
-const { IN_SERVISE } = trucksStatuses;
+const { TRUCK_STATUS } = require("../../data/trucksData.json");
 
 const compareTrucks = async (dimensions, payload) => {
   const {
@@ -12,7 +11,7 @@ const compareTrucks = async (dimensions, payload) => {
 
   try {
     return await Truck.findOne({
-      status: IN_SERVISE,
+      status: TRUCK_STATUS.IN_SERVICE,
       assigned_to: { $ne: null },
       "dimensions.width": { $gte: loadWidth },
       "dimensions.height": { $gte: loadHeight },

@@ -1,0 +1,17 @@
+{
+  "USER_STATUS": {
+    "DRIVER": "Driver",
+    "SHIPPER": "Shipper"
+  },
+  "USER_LOGS": {
+    "PASSWORD": "Password was updated!",
+    "RECEIVED": "User data successfully received",
+    "DELETED": "User data was deleted!",
+    "LOGIN_SUCCESS": "Login succesfull",
+    "LOGIN_FAILED": "Login failed",
+    "REG_SUCCESS": "New user added to DB and token was sended",
+    "REG_FAILED": "Registration failed",
+    "ERROR_DELETE": "Can not delete user data!",
+    "ERROR_ACCESS": "Access rejected"
+  }
+}

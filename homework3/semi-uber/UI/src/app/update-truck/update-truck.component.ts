@@ -23,6 +23,6 @@ export class UpdateTruckComponent implements OnInit {
         { updatedName, truckID },
         { headers: { token } }
       )
-      .subscribe();
+      .subscribe(console.log);
   }
 }

@@ -1,14 +1,31 @@
 {
-  "STATUS": {
+  "LOAD_ASSIGNED_DEFAULT": null,
+
+  "LOAD_STATUS": {
     "NEW": "NEW",
     "POSTED": "POSTED",
+    "UPDATED": "UPDATED",
     "ASSIGNED": "ASSIGNED",
     "SHIPPED": "SHIPPED"
   },
-  "STATE": {
+  "LOAD_STATE": {
+    "DEFAULT": "CREATED",
     "EN_ROUTE_TO_PA": "En route to Pick Up",
     "ARRIVED_TO_PA": "Arrived to Pick Up",
     "EN_ROUTE_TO_D": "Arrived to delivery",
     "ARRIVED_TO_D": "Arrived to delivery"
+  },
+  "LOAD_LOGS": {
+    "TRUCK_FOUNDED": "Truck for load was found!",
+    "CREATED": "Load created",
+    "ADDED": "New load was added",
+    "UPDATED": "Load updated!",
+    "ASSIGNED": "Load was assigned at truck",
+    "ERROR_SHIPPED": "Load was allready shipped",
+    "ERROR_EDIT": "Edit error! Can not edit this load!",
+    "ERROR_DELETE": "Delete error! Can not delete this load!",
+    "ERROR_UPDATE": "Update error! Can not update this load!",
+    "ERROR_MATCH": "Can not match truck for this load",
+    "DELETED": "Load was successfully deleted"
   }
 }

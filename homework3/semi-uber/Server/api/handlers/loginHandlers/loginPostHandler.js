@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt");
 const { User } = require("../../Schemas/user.schema");
 const jwt = require("jsonwebtoken");
 const errorHandler = require("../error.handler");
-const log4js = require("log4js");
-const logger = log4js.getLogger();
+const success = require("../../utilits/successResponse");
+const { USER_LOGS } = require("../../../data/usersData.json");
 
 const loginPostHandler = async (req, res) => {
   const { password, username } = req.body;
@@ -30,13 +30,7 @@ const loginPostHandler = async (req, res) => {
     return errorHandler(error.message, res);
   }
 
-  logger.info("Login successful");
-
-  res.status(200).json({
-    success: true,
-    data: { id: user.id, token: token },
-    error: null
-  });
+  res.json(success(USER_LOGS.LOGIN_SUCCESS, { id: user.id, token }));
 };
 
 module.exports = loginPostHandler;

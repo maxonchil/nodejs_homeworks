@@ -1,0 +1,12 @@
+{
+  "DEFAULT_STRUCTURE": {
+    "logs": []
+  },
+  "LOGGER": {
+    "LEVEL": "info"
+  },
+  "CHARSET": "utf-8",
+  "LOGS": {
+    "ERROR_LOG": "Error! Can not write log."
+  }
+}
