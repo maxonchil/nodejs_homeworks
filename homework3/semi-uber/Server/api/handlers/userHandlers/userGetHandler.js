@@ -17,14 +17,14 @@ const userGetHandler = async (req, res) => {
   if (pageID !== userID) {
     return errorHandler(USER_LOGS.ERROR_ACCESS, res);
   }
-  
+
   try {
     user = await User.findById(userID);
   } catch (error) {
     return errorHandler(error.message, res);
   }
 
-  const { name, username, email, status } = user;
+  const { name, username, email, status, avatar } = user;
 
   try {
     customData = await getCustomData(status, userID);
@@ -37,7 +37,8 @@ const userGetHandler = async (req, res) => {
     username,
     email,
     status,
-    customData
+    customData,
+    avatar
   };
   res.json(success(USER_LOGS.RECEIVED, userData));
 };

@@ -1,0 +1,14 @@
+<div class="avatar">
+  <img class="avatar__img" *ngIf="user.avatar" [src]="user.avatar" alt="Avatar" />
+  <label class="avatar__label"
+    >Upload your avatar:
+    <input
+      (change)="getImage($event)"
+      class="avatar__input"
+      type="file"
+      name="avatar"
+  /></label>
+  <button class="avatar__button button" type="button" (click)="sendImage()">
+    Submit
+  </button>
+</div>

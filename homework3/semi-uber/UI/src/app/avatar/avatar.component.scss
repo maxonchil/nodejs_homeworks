@@ -1,0 +1,16 @@
+.avatar {
+  margin: 10px 0;
+  border: 2px solid #3fdaff;
+  width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  &__button,
+  &__label {
+    margin: 10px 0;
+  }
+  &__img {
+    width: 200px;
+
+  }
+}

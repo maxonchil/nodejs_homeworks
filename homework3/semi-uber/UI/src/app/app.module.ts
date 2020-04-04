@@ -19,6 +19,7 @@ import { AssignTruckComponent } from "./assign-truck/assign-truck.component";
 import { DeleteTruckComponent } from './delete-truck/delete-truck.component';
 import { UpdateTruckComponent } from './update-truck/update-truck.component';
 import { AssignedLoadsComponent } from './assigned-loads/assigned-loads.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AssignedLoadsComponent } from './assigned-loads/assigned-loads.componen
     AssignTruckComponent,
     DeleteTruckComponent,
     UpdateTruckComponent,
-    AssignedLoadsComponent
+    AssignedLoadsComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

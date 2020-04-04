@@ -7,6 +7,7 @@
     "PASSWORD": "Password was updated!",
     "RECEIVED": "User data successfully received",
     "DELETED": "User data was deleted!",
+    "AVATAR": "Avatar was successfully added",
     "LOGIN_SUCCESS": "Login succesfull",
     "LOGIN_FAILED": "Login failed",
     "REG_SUCCESS": "New user added to DB and token was sended",

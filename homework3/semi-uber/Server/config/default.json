@@ -14,5 +14,10 @@
   "JWT": {
     "secret": "secret"
   },
+  "cloudinary": {
+    "cloud_name": "somename",
+    "api_key": "your_key",
+    "api_secret": "your_secret"
+  },
   "saltRounds": "10"
 }

@@ -62,7 +62,6 @@ export class PostLoadComponent implements OnInit {
       }
       return load;
     });
-    console.log("LS OBJ:\n", userData);
     localStorage.setItem("userData", JSON.stringify(userData));
   }
 }

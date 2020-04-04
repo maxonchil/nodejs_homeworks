@@ -59,7 +59,6 @@ export class RegistrationPageComponent implements OnInit {
     const password = inputs.password;
     const email = inputs.email;
     const status = inputs.status;
-
     this.user = {
       name,
       username,
