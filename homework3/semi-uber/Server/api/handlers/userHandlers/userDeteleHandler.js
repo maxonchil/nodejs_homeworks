@@ -1,40 +1,35 @@
-const log4js = require("log4js");
-const logger = log4js.getLogger();
 const { User } = require("../../Schemas/user.schema");
 const { Load } = require("../../Schemas/load.schema");
 const { Truck } = require("../../Schemas/truck.schema");
 const errorHandler = require("../error.handler");
 const checkForEdit = require("../../utilits/checkforEdit");
+const { USER_STATUS, USER_LOGS } = require("../../../data/usersData.json");
+const success = require("../../utilits/successResponse");
 
 async function userDeleteHandler(req, res) {
   const { id: userID } = req.params;
 
   const editCheck = await checkForEdit(userID);
+
   if (editCheck === null) {
-    return errorHandler("Can not delete account!", res);
+    return errorHandler(USER_LOGS.ERROR_DELETE, res);
   }
+  
   const user = await User.findByIdAndDelete(userID);
 
-  if (user.status === "Shipper") {
+  if (user.status === USER_STATUS.SHIPPER) {
     try {
       await Load.remove({ created_by: userID });
     } catch (error) {
-      return errorHandler("Can not delete user data");
+      return errorHandler(USER_LOGS.ERROR_DELETE);
     }
   } else {
     try {
       Truck.remove({ created_by: userID });
     } catch (error) {
-      return errorHandler("Can not delete user data");
+      return errorHandler(USER_LOGS.ERROR_DELETE);
     }
   }
-  logger.info("User data was deleted!");
-  res.json({
-    success: true,
-    data: {
-      message: "User's account all custom data was successfully deleted"
-    },
-    error: null
-  });
+  res.json(success(USER_LOGS.DELETED, { message: USER_LOGS.DELETED }));
 }
 module.exports = userDeleteHandler;

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from "@angular/router";
 import { environment as env } from "./../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, Input } from "@angular/core";
@@ -13,14 +14,18 @@ export class PostLoadComponent implements OnInit {
 
   responseText;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}
 
-  postLoad({ _id: id }) {
+  postLoad({ _id: id, created_by: userID }) {
     const token = localStorage.getItem("JWT");
     this.http
-      .put(`${env.baseURL}/service`, { loadID: id }, { headers: { token } })
+      .put(
+        `${env.baseURL}/service`,
+        { loadID: id, userID },
+        { headers: { token } }
+      )
       .subscribe((res: any) => {
         if (res.success) {
           return this.changeLoadStatus(res, id);

@@ -1,15 +1,16 @@
 const config = require("config");
-const log4js = require("log4js");
-const logger = log4js.getLogger();
 const { User } = require("../../Schemas/user.schema");
 const saltRounds = Number(config.get("saltRounds"));
 const errorHandler = require("../error.handler");
 const hashPassword = require("../../utilits/hashPassword");
+const success = require("../../utilits/successResponse");
+const { USER_LOGS } = require("../../../data/usersData.json");
 
 async function userPatchHandler(req, res) {
-  const { newPassword, id: userID } = req.body;
+  const { newPassword, userID } = req.body;
   let hashedPass;
 
+  
   try {
     hashedPass = await hashPassword(newPassword, saltRounds);
   } catch (error) {
@@ -24,12 +25,6 @@ async function userPatchHandler(req, res) {
     return errorHandler(error.message, res);
   }
 
-  logger.info("Password was updated!");
-
-  res.json({
-    success: true,
-    data: {},
-    message: "Password was updated!"
-  });
+  res.json(success(USER_LOGS.PASSWORD));
 }
 module.exports = userPatchHandler;

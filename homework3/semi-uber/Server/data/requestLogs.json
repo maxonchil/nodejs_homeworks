@@ -1,11 +1,1 @@
-{
-  "logs": [
-    { "url": "/", "method": "GET", "time": 1585133023142 },
-    { "url": "/", "method": "GET", "time": 1585133039071 },
-    { "url": "/", "method": "OPTIONS", "time": 1585165220797 },
-    { "url": "/", "method": "POST", "time": 1585167513117 },
-    { "url": "/", "method": "POST", "time": 1585167580141 },
-    { "url": "/", "method": "POST", "time": 1585649695693 },
-    { "url": "/", "method": "POST", "time": 1585733135771 }
-  ]
-}
+{"logs":[{"url":"/5e85a91d8d7b4016cd72763d","method":"GET","time":1585820630128},{"url":"/5e85a91d8d7b4016cd72763d","method":"GET","time":1585820637410},{"url":"/5e8607433b1d8d66645b4aec","method":"GET","time":1585845093309},{"url":"/5e8607433b1d8d66645b4","method":"GET","time":1585845096231},{"url":"/5e8607433b1d8d66645b4aec","method":"GET","time":1585845097500},{"url":"/5e8607433b1d8d66645b4aec","method":"GET","time":1585845221948},{"url":"/5e8609713974f467a07584c3","method":"GET","time":1585845227876},{"url":"/","method":"DELETE","time":1585845229748},{"url":"/","method":"DELETE","time":1585845230772},{"url":"/","method":"DELETE","time":1585845231060},{"url":"/","method":"POST","time":1585845237370},{"url":"/","method":"PUT","time":1585845239303},{"url":"/5e8607433b1d8d66645b4aec","method":"GET","time":1585845246384},{"url":"/","method":"PATCH","time":1585845251805},{"url":"/","method":"POST","time":1585845256069},{"url":"/","method":"POST","time":1585845261851},{"url":"/","method":"DELETE","time":1585845265479},{"url":"/","method":"POST","time":1585845267345},{"url":"/5e8609713974f467a07584c3","method":"GET","time":1585845268820},{"url":"/","method":"PUT","time":1585845270388},{"url":"/5e8609713974f467a07584c3","method":"GET","time":1585845273082},{"url":"/5e8607433b1d8d66645b4aec","method":"GET","time":1585845277790},{"url":"/","method":"DELETE","time":1585845320466},{"url":"/","method":"DELETE","time":1585845331529},{"url":"/","method":"DELETE","time":1585845340393},{"url":"/","method":"DELETE","time":1585845355192},{"url":"/","method":"DELETE","time":1585845359248},{"url":"/","method":"DELETE","time":1585845412210},{"url":"/","method":"DELETE","time":1585845418223},{"url":"/","method":"DELETE","time":1585845429639},{"url":"/","method":"PATCH","time":1585845466709},{"url":"/","method":"PATCH","time":1585845474618},{"url":"/","method":"PATCH","time":1585845552739},{"url":"/","method":"PUT","time":1585845578181},{"url":"/","method":"PUT","time":1585845583350}]}

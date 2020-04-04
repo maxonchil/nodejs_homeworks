@@ -2,12 +2,12 @@ const config = require("config");
 const { secret } = config.get("JWT");
 const saltRounds = Number(config.get("saltRounds"));
 const jwt = require("jsonwebtoken");
-const log4js = require("log4js");
-const logger = log4js.getLogger();
 const { userSchemaValidation } = require("../../Schemas/user.schema");
 const errorHandler = require("../error.handler");
 const hashPassword = require("../../utilits/hashPassword");
 const createUser = require("../../utilits/createUser");
+const { USER_LOGS } = require("../../../data/usersData.json");
+const success = require("../../utilits/successResponse");
 
 const registrationPostHandler = (req, res) => {
   const { value, error } = userSchemaValidation.validate(req.body);
@@ -21,12 +21,8 @@ const registrationPostHandler = (req, res) => {
     .then(password => createUser(name, username, password, email, status))
     .then(user => user.save())
     .then(({ id }) => {
-      logger.info("New user added to BD and token was sended");
-      res.json({
-        success: true,
-        data: { id, token: jwt.sign(id, secret) },
-        error: null
-      });
+      const data = { id, token: jwt.sign(id, secret) };
+      res.json(success(USER_LOGS.REG_SUCCESS, data));
     })
     .catch(error => {
       return errorHandler(error.message, res);

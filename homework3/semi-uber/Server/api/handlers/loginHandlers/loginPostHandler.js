@@ -4,13 +4,14 @@ const bcrypt = require("bcrypt");
 const { User } = require("../../Schemas/user.schema");
 const jwt = require("jsonwebtoken");
 const errorHandler = require("../error.handler");
-const log4js = require("log4js");
-const logger = log4js.getLogger();
+const success = require("../../utilits/successResponse");
+const { USER_LOGS } = require("../../../data/usersData.json");
 
 const loginPostHandler = async (req, res) => {
   const { password, username } = req.body;
   let user;
   let token;
+  let comparedPass;
 
   try {
     user = await User.findOne({ username });
@@ -25,18 +26,16 @@ const loginPostHandler = async (req, res) => {
   }
 
   try {
-    await bcrypt.compare(password, user.password);
+    comparedPass = await bcrypt.compare(password, user.password);
   } catch (error) {
     return errorHandler(error.message, res);
   }
 
-  logger.info("Login successful");
+  if (!comparedPass) {
+    return errorHandler(USER_LOGS.LOGIN_FAILED, res);
+  }
 
-  res.status(200).json({
-    success: true,
-    data: { id: user.id, token: token },
-    error: null
-  });
+  res.json(success(USER_LOGS.LOGIN_SUCCESS, { id: user.id, token }));
 };
 
 module.exports = loginPostHandler;

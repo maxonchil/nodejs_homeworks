@@ -20,12 +20,13 @@ export class DeleteTruckComponent implements OnInit {
     return JSON.parse(localStorage.getItem(item));
   }
 
-  deleteTruck({ _id: id }) {
+  deleteTruck({ _id: id, created_by: userID }) {
     const token = localStorage.getItem("JWT");
     this.http
       .delete(`${env.baseURL}/trucks`, {
         headers: {
           truck: id,
+          userID,
           token
         }
       })

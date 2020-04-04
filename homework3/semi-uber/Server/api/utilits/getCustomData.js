@@ -1,8 +1,9 @@
 const { Load } = require("../Schemas/load.schema");
 const { Truck } = require("../Schemas/truck.schema");
+const { USER_STATUS } = require("../../data/usersData.json");
 
-async function getCustomData(stats, userID) {
-  if (stats === "Shipper") {
+async function getCustomData(status, userID) {
+  if (status === USER_STATUS.SHIPPER) {
     try {
       const loads = await Load.find({ created_by: userID });
       return { loads };
