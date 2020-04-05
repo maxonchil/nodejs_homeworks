@@ -6,12 +6,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 @Component({
   selector: "app-avatar",
   templateUrl: "./avatar.component.html",
-  styleUrls: ["./avatar.component.scss"]
+  styleUrls: ["./avatar.component.scss"],
 })
 export class AvatarComponent implements OnInit {
   @Input() user: any;
   @Output() updAwatar = new EventEmitter();
-  avatarURL = JSON.parse(localStorage.getItem("userData")).avatar;
   avatarFile: any;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
@@ -35,8 +34,8 @@ export class AvatarComponent implements OnInit {
         {
           headers: {
             userID,
-            token
-          }
+            token,
+          },
         }
       )
       .subscribe((res: any) => {

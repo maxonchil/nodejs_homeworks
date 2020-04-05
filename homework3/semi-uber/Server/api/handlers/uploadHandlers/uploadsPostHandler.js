@@ -3,7 +3,7 @@ const { User } = require("../../Schemas/user.schema");
 const success = require("../../utilits/successResponse");
 const { USER_LOGS } = require("../../../data/usersData.json");
 const { uploader: cloud } = require("../../utilits/cloudinarySetUp");
-const fs = require("fs");
+const rimraf = require("rimraf");
 
 const uploadPostHandler = async (req, res) => {
   const userID = req.headers["userid"];
@@ -11,17 +11,18 @@ const uploadPostHandler = async (req, res) => {
 
   cloud
     .upload(filePath)
-    .then(result =>
+    .then((result) =>
       User.findOneAndUpdate(
         { _id: userID },
         { avatar: result.url },
         { new: true }
       )
     )
-    .then(user => {
+    .then((user) => {
+      rimraf.sync("tmp");
       res.json(success(USER_LOGS.AVATAR, { avatar: user.avatar }));
     })
-    .catch(error => errorHandler(error.message, res));
+    .catch((error) => errorHandler(error.message, res));
 };
 
 module.exports = uploadPostHandler;
