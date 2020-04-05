@@ -1,6 +1,5 @@
 const config = require("config");
 const { secret } = config.get("JWT");
-const bcrypt = require("bcrypt");
 const { User } = require("../../Schemas/user.schema");
 const jwt = require("jsonwebtoken");
 const errorHandler = require("../error.handler");

@@ -15,6 +15,7 @@
     "ERROR_DELETE": "Can not delete user data!",
     "ERROR_ACCESS": "Access rejected",
     "ERROR_HASHING": "Failed password hashing",
-    "ERROR_PASSWORD": "Current password is incorrect"
+    "ERROR_PASSWORD": "Current password is incorrect",
+    "ERROR_EDIT": "Can not edit user profile"
   }
 }
