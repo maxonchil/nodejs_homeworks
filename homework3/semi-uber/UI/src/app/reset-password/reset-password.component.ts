@@ -9,7 +9,7 @@ import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-reset-password",
   templateUrl: "./reset-password.component.html",
-  styleUrls: ["./reset-password.component.scss"]
+  styleUrls: ["./reset-password.component.scss"],
 })
 export class ResetPasswordComponent implements OnInit {
   pasRegexp: "(?=^.{6,}$)((?=.*d)(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*";
@@ -18,11 +18,15 @@ export class ResetPasswordComponent implements OnInit {
   errorMessage: string;
 
   changePasswordForm = new FormGroup({
+    curentPassword: new FormControl("", [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
     newPassword: new FormControl("", [
       Validators.required,
       Validators.minLength(6),
-      Validators.pattern(this.pasRegexp)
-    ])
+      Validators.pattern(this.pasRegexp),
+    ]),
   });
   constructor(
     private http: HttpClient,
@@ -38,11 +42,12 @@ export class ResetPasswordComponent implements OnInit {
   changePassword() {
     const userID = this.route.snapshot.paramMap.get("id");
     const newPassword = this.changePasswordForm.get("newPassword").value;
+    const curentPassword = this.changePasswordForm.get("curentPassword").value;
     const token = localStorage.getItem("JWT");
     this.http
       .patch(
         `${env.baseURL}/user/${userID}`,
-        { userID, newPassword },
+        { userID, newPassword, curentPassword },
         { headers: { token } }
       )
       .subscribe((res: any) => {
@@ -57,8 +62,8 @@ export class ResetPasswordComponent implements OnInit {
       .delete(`${env.baseURL}/user/${userID}`, {
         headers: {
           token,
-          userID
-        }
+          userID,
+        },
       })
       .subscribe((res: any) => {
         if (res.success) {

@@ -6,12 +6,12 @@ const jwt = require("jsonwebtoken");
 const errorHandler = require("../error.handler");
 const success = require("../../utilits/successResponse");
 const { USER_LOGS } = require("../../../data/usersData.json");
+const comparePasswords = require("../../utilits/comparePasswords");
 
 const loginPostHandler = async (req, res) => {
   const { password, username } = req.body;
   let user;
   let token;
-  let comparedPass;
 
   try {
     user = await User.findOne({ username });
@@ -25,11 +25,7 @@ const loginPostHandler = async (req, res) => {
     return errorHandler(error.message, res);
   }
 
-  try {
-    comparedPass = await bcrypt.compare(password, user.password);
-  } catch (error) {
-    return errorHandler(error.message, res);
-  }
+  const comparedPass = await comparePasswords(password, user.password);
 
   if (!comparedPass) {
     return errorHandler(USER_LOGS.LOGIN_FAILED, res);
