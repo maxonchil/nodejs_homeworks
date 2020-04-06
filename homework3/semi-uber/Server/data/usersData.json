@@ -7,11 +7,15 @@
     "PASSWORD": "Password was updated!",
     "RECEIVED": "User data successfully received",
     "DELETED": "User data was deleted!",
+    "AVATAR": "Avatar was successfully added",
     "LOGIN_SUCCESS": "Login succesfull",
     "LOGIN_FAILED": "Login failed",
     "REG_SUCCESS": "New user added to DB and token was sended",
     "REG_FAILED": "Registration failed",
     "ERROR_DELETE": "Can not delete user data!",
-    "ERROR_ACCESS": "Access rejected"
+    "ERROR_ACCESS": "Access rejected",
+    "ERROR_HASHING": "Failed password hashing",
+    "ERROR_PASSWORD": "Current password is incorrect",
+    "ERROR_EDIT": "Can not edit user profile"
   }
 }

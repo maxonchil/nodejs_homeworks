@@ -6,7 +6,8 @@ const User = new Schema({
   username: { type: String, unique: true, index: true },
   password: { type: String },
   email: { type: String, unique: true, index: true },
-  status: { type: String }
+  status: { type: String },
+  avatar: { type: String, default: null }
 });
 const userSchemaValidation = Joi.object({
   name: Joi.string()
@@ -28,7 +29,8 @@ const userSchemaValidation = Joi.object({
     .required(),
   status: Joi.string()
     .required()
-    .min(6)
+    .min(6),
+  avatar: Joi.string()
 });
 
 module.exports = { User: mongoose.model("User", User), userSchemaValidation };

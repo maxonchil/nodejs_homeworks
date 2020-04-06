@@ -6,10 +6,11 @@ const errorHandler = require("../error.handler");
 const getCustomData = require("../../utilits/getCustomData");
 const success = require("../../utilits/successResponse");
 const { USER_LOGS } = require("../../../data/usersData.json");
+const { JWT_TOKEN } = require("../../../data/headers.json");
 
 const userGetHandler = async (req, res) => {
   const pageID = req.params.id;
-  const token = req.headers["token"];
+  const token = req.headers[JWT_TOKEN];
   const userID = jwt.verify(token, secret);
   let user;
   let customData;
@@ -17,14 +18,14 @@ const userGetHandler = async (req, res) => {
   if (pageID !== userID) {
     return errorHandler(USER_LOGS.ERROR_ACCESS, res);
   }
-  
+
   try {
     user = await User.findById(userID);
   } catch (error) {
     return errorHandler(error.message, res);
   }
 
-  const { name, username, email, status } = user;
+  const { name, username, email, status, avatar } = user;
 
   try {
     customData = await getCustomData(status, userID);
@@ -37,7 +38,8 @@ const userGetHandler = async (req, res) => {
     username,
     email,
     status,
-    customData
+    customData,
+    avatar,
   };
   res.json(success(USER_LOGS.RECEIVED, userData));
 };

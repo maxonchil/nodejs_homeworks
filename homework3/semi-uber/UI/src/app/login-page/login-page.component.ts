@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-login-page",
   templateUrl: "./login-page.component.html",
-  styleUrls: ["./login-page.component.scss"]
+  styleUrls: ["./login-page.component.scss"],
 })
 export class LoginPageComponent implements OnInit {
   failLogin = false;
@@ -16,12 +16,12 @@ export class LoginPageComponent implements OnInit {
   loginForm = new FormGroup({
     username: new FormControl("", [
       Validators.required,
-      Validators.minLength(2)
+      Validators.minLength(2),
     ]),
     password: new FormControl("", [
       Validators.required,
-      Validators.minLength(2)
-    ])
+      Validators.minLength(2),
+    ]),
   });
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -31,9 +31,10 @@ export class LoginPageComponent implements OnInit {
     const inputs = this.loginForm.value;
     const user = {
       username: inputs.username,
-      password: inputs.password
+      password: inputs.password,
     };
-    this.http.post(`${env.baseURL}/login`, user).subscribe((res: any) => {
+    this.http.post(`${env.baseURL}/login`, user)
+    .subscribe((res: any) => {
       if (!res.success) {
         return (this.failLogin = true);
       }

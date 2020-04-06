@@ -6,7 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-user-page",
   templateUrl: "./user-page.component.html",
-  styleUrls: ["./user-page.component.scss"]
+  styleUrls: ["./user-page.component.scss"],
 })
 export class UserPageComponent implements OnInit {
   user: any = {};
@@ -24,8 +24,8 @@ export class UserPageComponent implements OnInit {
       .get(`${env.baseURL}/user/${userID}`, {
         headers: {
           token,
-          userID
-        }
+          userID,
+        },
       })
       .subscribe((res: any) => {
         this.user = res.data;

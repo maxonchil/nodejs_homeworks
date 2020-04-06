@@ -1,6 +1,10 @@
 const bcrypt = require("bcrypt");
 
 const hashPassword = (password, saltRounds) => {
-  return bcrypt.hash(password, saltRounds);
+  try {
+    return bcrypt.hash(password, saltRounds);
+  } catch (error) {
+    return null;
+  }
 };
 module.exports = hashPassword;
