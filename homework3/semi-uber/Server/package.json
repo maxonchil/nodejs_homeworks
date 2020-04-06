@@ -4,7 +4,7 @@
   "description": "There is a server for semi-uber application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index"
   },
   "keywords": [
     "nodejs",
