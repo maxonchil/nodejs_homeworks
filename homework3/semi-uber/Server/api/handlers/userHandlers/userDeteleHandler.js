@@ -2,7 +2,7 @@ const { User } = require("../../Schemas/user.schema");
 const { Load } = require("../../Schemas/load.schema");
 const { Truck } = require("../../Schemas/truck.schema");
 const errorHandler = require("../error.handler");
-const checkForEdit = require("../../utilits/checkforEdit");
+const checkForEdit = require("../../utilits/checkForEdit");
 const { USER_STATUS, USER_LOGS } = require("../../../data/usersData.json");
 const success = require("../../utilits/successResponse");
 

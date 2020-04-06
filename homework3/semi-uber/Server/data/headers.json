@@ -1,0 +1,6 @@
+{
+  "LOAD_ID": "load",
+  "TRUCK_ID": "truck",
+  "USER_ID": "userid",
+  "JWT_TOKEN": "token"
+}

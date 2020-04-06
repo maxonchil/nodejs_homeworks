@@ -3,7 +3,7 @@ const logger = log4js.getLogger();
 const errorHandler = require("../error.handler");
 const { Truck } = require("../../Schemas/truck.schema");
 const { TRUCK_LOGS } = require("../../../data/trucksData.json");
-const checkForEdit = require("../../utilits/checkforEdit");
+const checkForEdit = require("../../utilits/checkForEdit");
 const success = require("../../utilits/successResponse");
 
 const trucksPatchHandler = async (req, res) => {

@@ -1,7 +1,7 @@
 const errorHandler = require("../error.handler");
 const { Truck, truckSchemaValidation } = require("../../Schemas/truck.schema");
 const getTruckParams = require("../../utilits/trucksParams");
-const checkForEdit = require("../../utilits/checkforEdit");
+const checkForEdit = require("../../utilits/checkForEdit");
 const success = require("../../utilits/successResponse");
 const { TRUCK_LOGS } = require("../../../data/trucksData.json");
 
