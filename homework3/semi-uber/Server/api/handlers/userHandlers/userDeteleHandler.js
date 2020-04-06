@@ -11,7 +11,7 @@ async function userDeleteHandler(req, res) {
 
   const editCheck = await checkForEdit(userID);
 
-  if (editCheck === null) {
+  if (!editCheck) {
     return errorHandler(USER_LOGS.ERROR_DELETE, res);
   }
   

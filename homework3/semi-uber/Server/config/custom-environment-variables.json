@@ -19,5 +19,11 @@
     "api_key": "API_KEY",
     "api_secret": "API_SECRET"
   },
+  "nodemailer": {
+    "service": "MAILER_SERVICE",
+    "default_subject": "MAILER_SUBJECT",
+    "user": "MAILER_USER",
+    "pass": "MAILER_PASS"
+  },
   "saltRounds": "SALT_ROUNDS"
 }

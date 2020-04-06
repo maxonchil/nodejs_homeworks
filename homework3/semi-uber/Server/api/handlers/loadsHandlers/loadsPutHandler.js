@@ -12,17 +12,16 @@ const loadsPutHandler = (req, res) => {
     {
       dimensions,
       payload,
-      $push: { logs: logMessage(LOAD_LOGS.UPDATED) }
+      $push: { logs: logMessage(LOAD_LOGS.UPDATED) },
     }
   )
-    .then(result => {
-      if (result === null) {
-        return errorHandler(LOAD_LOGS.ERROR_EDIT, res);
-      } else {
-        res.json(success(LOAD_LOGS.UPDATED, { status: LOAD_STATUS.UPDATED }));
+    .then((result) => {
+      if (!result) {
+        throw new Error(LOAD_LOGS.ERROR_EDIT);
       }
+      res.json(success(LOAD_LOGS.UPDATED, { status: LOAD_STATUS.UPDATED }));
     })
-    .catch(error => errorHandler(error.message, res));
+    .catch((error) => errorHandler(error.message, res));
 };
 
 module.exports = loadsPutHandler;

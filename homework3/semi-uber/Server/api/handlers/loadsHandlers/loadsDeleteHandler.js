@@ -11,7 +11,7 @@ const loadsDeleteHandler = (req, res) => {
     status: { $in: [LOAD_STATUS.NEW, LOAD_STATUS.SHIPPED] },
   })
     .then((result) => {
-      if (result === null) {
+      if (!result) {
         throw new Error(LOAD_LOGS.ERROR_DELETE);
       }
       res.json(success(LOAD_LOGS.DELETED));
