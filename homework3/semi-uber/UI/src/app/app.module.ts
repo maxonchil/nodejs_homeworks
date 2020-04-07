@@ -20,6 +20,7 @@ import { DeleteTruckComponent } from './delete-truck/delete-truck.component';
 import { UpdateTruckComponent } from './update-truck/update-truck.component';
 import { AssignedLoadsComponent } from './assigned-loads/assigned-loads.component';
 import { AvatarComponent } from './avatar/avatar.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AvatarComponent } from './avatar/avatar.component';
     DeleteTruckComponent,
     UpdateTruckComponent,
     AssignedLoadsComponent,
-    AvatarComponent
+    AvatarComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

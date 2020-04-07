@@ -3,7 +3,7 @@ const { Truck } = require("../../Schemas/truck.schema");
 const {
   LOAD_STATUS,
   LOAD_STATE,
-  LOAD_LOGS
+  LOAD_LOGS,
 } = require("../../../data/loadData.json");
 const { TRUCK_STATUS, TRUCK_LOGS } = require("../../../data/trucksData.json");
 const errorHandler = require("../error.handler");
@@ -24,14 +24,14 @@ const servicePatchHandler = async (req, res) => {
         state: LOAD_STATE.ARRIVED_TO_D,
         status: LOAD_STATUS.SHIPPED,
         assigned_to: null,
-        $push: { logs: logMessage(`Load in status ${LOAD_STATUS.SHIPPED}`) }
+        $push: { logs: logMessage(`Load in status ${LOAD_STATUS.SHIPPED}`) },
       }
     );
   } catch (error) {
     return errorHandler(error.message);
   }
-  
-  if (updatedLoad === null) {
+
+  if (!updatedLoad) {
     return errorHandler(LOAD_LOGS.ERROR_POSTED, res);
   }
   logger.info(`Loads in status ${LOAD_STATUS.SHIPPED}`);
@@ -40,7 +40,7 @@ const servicePatchHandler = async (req, res) => {
     updatedTruck = await Truck.findOneAndUpdate(
       {
         created_by: userID,
-        status: TRUCK_STATUS.ON_LOAD
+        status: TRUCK_STATUS.ON_LOAD,
       },
       { status: TRUCK_STATUS.IN_SERVICE }
     );
@@ -48,7 +48,7 @@ const servicePatchHandler = async (req, res) => {
     return errorHandler(error.message);
   }
 
-  if (updatedTruck === null) {
+  if (!updatedTruck) {
     return errorHandler(LOAD_LOGS.ERROR_SHIPPED, res);
   }
   logger.info(`Truck in status ${TRUCK_STATUS.IN_SERVICE}`);

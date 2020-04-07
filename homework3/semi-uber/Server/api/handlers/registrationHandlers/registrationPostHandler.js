@@ -1,6 +1,5 @@
 const config = require("config");
 const { secret } = config.get("JWT");
-const saltRounds = Number(config.get("saltRounds"));
 const jwt = require("jsonwebtoken");
 const { userSchemaValidation } = require("../../Schemas/user.schema");
 const errorHandler = require("../error.handler");
@@ -17,16 +16,14 @@ const registrationPostHandler = (req, res) => {
     return errorHandler(error.message, res);
   }
 
-  hashPassword(password, saltRounds)
-    .then(password => createUser(name, username, password, email, status))
-    .then(user => user.save())
+  hashPassword(password)
+    .then((password) => createUser(name, username, password, email, status))
+    .then((user) => user.save())
     .then(({ id }) => {
       const data = { id, token: jwt.sign(id, secret) };
       res.json(success(USER_LOGS.REG_SUCCESS, data));
     })
-    .catch(error => {
-      return errorHandler(error.message, res);
-    });
+    .catch((error) => errorHandler(error.message, res));
 };
 
 module.exports = registrationPostHandler;

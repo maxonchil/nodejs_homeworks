@@ -13,7 +13,7 @@ const trucksPatchHandler = async (req, res) => {
 
   const editChek = await checkForEdit(userID);
 
-  if (editChek === null) {
+  if (!editChek) {
     return errorHandler(TRUCK_LOGS.ERROR_EDIT, res);
   }
   try {
@@ -30,12 +30,12 @@ const trucksPatchHandler = async (req, res) => {
 
   try {
     assignedTruck = await Truck.findByIdAndUpdate(truckID, {
-      assigned_to: userID
+      assigned_to: userID,
     });
   } catch (error) {
     return errorHandler(error.message, res);
   }
-  if (assignedTruck === null) {
+  if (!assignedTruck) {
     return errorHandler(TRUCK_LOGS.ERROR_EDIT, res);
   }
 

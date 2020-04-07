@@ -1,17 +1,16 @@
-const config = require("config");
 const { User } = require("../../Schemas/user.schema");
-const saltRounds = Number(config.get("saltRounds"));
 const errorHandler = require("../error.handler");
 const hashPassword = require("../../utilits/hashPassword");
 const success = require("../../utilits/successResponse");
 const { USER_LOGS } = require("../../../data/usersData.json");
 const comparePasswords = require("../../utilits/comparePasswords");
+const updatePassword = require("../../utilits/updatePassword");
 
 async function userPatchHandler(req, res) {
   const { newPassword, userID, curentPassword } = req.body;
   let user;
 
-  const hashedPass = await hashPassword(newPassword, saltRounds);
+  const hashedPass = await hashPassword(newPassword);
   if (!hashedPass) {
     return errorHandler(USER_LOGS.ERROR_HASHING, res);
   }
@@ -23,19 +22,15 @@ async function userPatchHandler(req, res) {
   }
 
   const comparedPass = await comparePasswords(curentPassword, user.password);
-
   if (!comparedPass) {
     return errorHandler(USER_LOGS.ERROR_PASSWORD, res);
   }
 
-  try {
-    await User.findByIdAndUpdate(userID, {
-      password: hashedPass,
-    });
-  } catch (error) {
-    return errorHandler(error.message, res);
+  const updatedPass = await updatePassword(userID, hashedPass);
+  if (!updatedPass) {
+    return errorHandler(USER_LOGS.ERROR_PASS_UPD, res);
   }
 
-  res.json(success(USER_LOGS.PASSWORD));
+  res.json(success(USER_LOGS.RECEIVED));
 }
 module.exports = userPatchHandler;

@@ -13,7 +13,7 @@ const loadsPatchHandler = async (req, res) => {
     LOAD_STATUS.POSTED
   );
 
-  if (load === null) {
+  if (!load) {
     return errorHandler(LOAD_LOGS.ERROR_UPDATE, res);
   }
 
@@ -22,7 +22,7 @@ const loadsPatchHandler = async (req, res) => {
   if (serachResult === null) {
     await changeLoadStatus(loadID, LOAD_STATUS.POSTED, LOAD_STATUS.NEW);
 
-    if (changeLoadStatus === null) {
+    if (!changeLoadStatus) {
       return errorHandler(LOAD_LOGS.ERROR_UPDATE, res);
     }
     return errorHandler(LOAD_LOGS.ERROR_MATCH, res);

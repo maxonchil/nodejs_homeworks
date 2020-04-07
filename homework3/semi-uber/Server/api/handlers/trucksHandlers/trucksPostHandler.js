@@ -14,7 +14,7 @@ const trucksPostHandler = async (req, res) => {
     type: truckType,
     dimensions,
     payload,
-    name: truckName
+    name: truckName,
   };
 
   const { value: validatedTruck, error } = truckSchemaValidation.validate(
@@ -27,7 +27,7 @@ const trucksPostHandler = async (req, res) => {
 
   const editChek = await checkForEdit(userID);
 
-  if (editChek === null) {
+  if (!editChek) {
     return errorHandler(TRUCK_LOGS.ERROR_EDIT, res);
   }
 
@@ -35,10 +35,10 @@ const trucksPostHandler = async (req, res) => {
 
   newTruck
     .save()
-    .then(truck => {
+    .then((truck) => {
       res.json(success(TRUCK_LOGS.CREATED, truck));
     })
-    .catch(error => errorHandler(error.message, res));
+    .catch((error) => errorHandler(error.message, res));
 };
 
 module.exports = trucksPostHandler;

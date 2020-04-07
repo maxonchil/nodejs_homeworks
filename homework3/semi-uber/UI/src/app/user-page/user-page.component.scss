@@ -1,14 +1,22 @@
 .users-page {
+  float: left;
+  margin: 10px;
   &__info {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
-  &__name,
+  &__ &__name,
   &__info,
   &__username,
   &__status {
     margin: 10px 0;
+  }
+  &__custom {
+    clear: both;
+  }
+  &__buttons {
+    display: inline-block;
   }
   &__span {
     font-weight: 700;

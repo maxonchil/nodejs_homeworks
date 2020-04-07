@@ -5,6 +5,9 @@
   },
   "USER_LOGS": {
     "PASSWORD": "Password was updated!",
+    "PASSWORD_GEN": "New password was generated!",
+    "PASSWORD_EMAIL": "User new password was sended at his email",
+    "EMAIL_RESET": "Password reset form NodeJs HW3 Service",
     "RECEIVED": "User data successfully received",
     "DELETED": "User data was deleted!",
     "AVATAR": "Avatar was successfully added",
@@ -12,6 +15,7 @@
     "LOGIN_FAILED": "Login failed",
     "REG_SUCCESS": "New user added to DB and token was sended",
     "REG_FAILED": "Registration failed",
+    "ERROR_PASS_UPD": "Can not update user password",
     "ERROR_DELETE": "Can not delete user data!",
     "ERROR_ACCESS": "Access rejected",
     "ERROR_HASHING": "Failed password hashing",

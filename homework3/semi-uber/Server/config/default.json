@@ -19,5 +19,11 @@
     "api_key": "your_key",
     "api_secret": "your_secret"
   },
+  "nodemailer": {
+    "service": "your_service",
+    "default_subject": "your_default_subject",
+    "user": "your_username",
+    "pass": "your_username@"
+  },
   "saltRounds": "10"
 }

@@ -9,11 +9,10 @@ const trucksDeleteHandler = (req, res) => {
 
   Truck.findOneAndRemove({ _id: truckID, assigned_to: null, edit: true })
     .then((result) => {
-      if (result === null) {
-        errorHandler(TRUCK_LOGS.ERROR_DELETE, res);
-      } else {
-        res.json(success(TRUCK_LOGS.DELETED));
+      if (!result) {
+        throw new Error(TRUCK_LOGS.ERROR_DELETE);
       }
+      res.json(success(TRUCK_LOGS.DELETED));
     })
     .catch((error) => errorHandler(error.message, res));
 };

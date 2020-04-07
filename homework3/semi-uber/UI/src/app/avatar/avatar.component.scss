@@ -5,12 +5,12 @@
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
+  float: left;
   &__button,
   &__label {
     margin: 10px 0;
   }
   &__img {
-    width: 200px;
-
+    width: 90%;
   }
 }

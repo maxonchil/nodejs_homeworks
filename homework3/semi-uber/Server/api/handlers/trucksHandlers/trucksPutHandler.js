@@ -10,14 +10,13 @@ const trucksPutHandler = (req, res) => {
     { _id: truckID, assigned_to: null, edit: true },
     { name: updatedName }
   )
-    .then(result => {
-      if (result === null) {
-        return errorHandler(TRUCK_LOGS.ERROR_EDIT, res);
-      } else {
-        res.json(success(TRUCK_LOGS.UPDATED, { message: TRUCK_LOGS.UPDATED }));
+    .then((result) => {
+      if (!result) {
+        throw new Error(TRUCK_LOGS.ERROR_EDIT);
       }
+      res.json(success(TRUCK_LOGS.UPDATED, { message: TRUCK_LOGS.UPDATED }));
     })
-    .catch(error => errorHandler(error.message, res));
+    .catch((error) => errorHandler(error.message, res));
 };
 
 module.exports = trucksPutHandler;
