@@ -18,4 +18,4 @@ specifically:
   - At *saltRounds* - choose appropriate number of salt rounds to hash user password
 
 
-5. In folder \(terminal) **semi-uber** print -  ```npm start```
+5. In folder  **semi-uber** use -  ```npm start```
