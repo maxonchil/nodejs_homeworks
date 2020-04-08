@@ -1,0 +1,14 @@
+{
+  "name": "semi-uber",
+  "version": "1.0.0",
+  "description": "First version of ped project by Node JS #3 API",
+  "sampleUrl": false,
+  "defaultVersion": "0.0.0",
+  "apidoc": "0.3.0",
+  "generator": {
+    "name": "apidoc",
+    "time": "2020-04-08T18:35:15.512Z",
+    "url": "http://apidocjs.com",
+    "version": "0.20.1"
+  }
+}

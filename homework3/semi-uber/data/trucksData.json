@@ -1,0 +1,39 @@
+{
+  "TRUCK_ASSIGNED_DEFAULT": null,
+  "TRUCK_EDIT_DEFAULT": true,
+  "TRUCK_STATUS": {
+    "IN_SERVICE": "IS",
+    "ON_LOAD": "OL",
+    "UPDATED": "Updated"
+  },
+  "TRUCK_PARAMS": {
+    "SPRINTER": {
+      "width": 300,
+      "length": 250,
+      "height": 170,
+      "payload": 1700
+    },
+    "SMALL_STRAIGHT": {
+      "width": 500,
+      "length": 250,
+      "height": 170,
+      "payload": 2500
+    },
+    "LARGE_STRAIGHT": {
+      "width": 700,
+      "length": 350,
+      "height": 200,
+      "payload": 4000
+    }
+  },
+  "TRUCK_LOGS": {
+    "UPDATED": "Truck was updated!",
+    "CREATED": "Truck created successfully",
+    "ASSIGNED": "Truck assigned successfully",
+    "UNASSIGNED": "Unassigned previous truck",
+    "DELETED": "Truck was succesfully delteted!",
+    "ERROR_EDIT": "Edit trucks info is not posible now!",
+    "ERROR_ADD":"Can not add a truck",
+    "ERROR_DELETE": "Delete error! Can not delete this truck!"
+  }
+}

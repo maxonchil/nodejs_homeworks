@@ -1,0 +1,28 @@
+{
+  "USER_ROLE": {
+    "DRIVER": "driver",
+    "SHIPPER": "shipper"
+  },
+  "USER_LOGS": {
+    "SUCCESS": "Success",
+    "PASSWORD": "Password was updated!",
+    "PASSWORD_GEN": "New password was generated!",
+    "PASSWORD_EMAIL": "User new password was sended at his email",
+    "EMAIL_ADD": "Email was successfully added",
+    "EMAIL_RESET": "Password reset form NodeJs HW3 Service",
+    "RECEIVED": "User data successfully received",
+    "DELETED": "User data was deleted!",
+    "AVATAR": "Avatar was successfully added",
+    "LOGIN_SUCCESS": "User authenticated successfully",
+    "LOGIN_FAILED": "Login failed",
+    "REG_SUCCESS": "User registered successfully",
+    "REG_FAILED": "Registration failed",
+    "ERROR_PASS_UPD": "Can not update user password",
+    "ERROR_RESET": "Can not reset user password",
+    "ERROR_DELETE": "Can not delete user data!",
+    "ERROR_ACCESS": "Access rejected",
+    "ERROR_HASHING": "Failed password hashing",
+    "ERROR_PASSWORD": "Current password is incorrect",
+    "ERROR_EDIT": "Can not edit user profile"
+  }
+}

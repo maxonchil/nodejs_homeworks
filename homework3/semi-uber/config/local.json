@@ -1,0 +1,29 @@
+{
+  "webServer": {
+    "protocol": "http",
+    "host": "localhost",
+    "port": 3000,
+    "logsPath": "data/requestLogs.json"
+  },
+  "dataBase": {
+    "protocol": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "name": "semi-uber"
+  },
+  "JWT": {
+    "secret": "Be3xKey"
+  },
+  "cloudinary": {
+    "cloud_name": "dcktfttao",
+    "api_key": "164862616977159",
+    "api_secret": "5eNn5f9FhSTcoQN4l_X-6JmqI4A"
+  },
+  "nodemailer": {
+    "service": "gmail",
+    "default_subject": "Mail from Semi-uber",
+    "user": "test.reset222@gmail.com",
+    "pass": "Test321@"
+  },
+  "saltRounds": "9"
+}
