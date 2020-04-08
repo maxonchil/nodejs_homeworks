@@ -5,7 +5,6 @@
       "method": "GET",
       "time": 1585820630128
     },
-    { "url": "/", "method": "POST", "time": 1586351900976 },
-    { "url": "/", "method": "POST", "time": 1586351929032 }
+    { "url": "/", "method": "POST", "time": 1586351900976 }
   ]
 }
