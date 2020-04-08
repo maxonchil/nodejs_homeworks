@@ -5,11 +5,9 @@
 
 2. ```git clone https://github.com/maxonchil/nodejs_homeworks.git ```
 
-3. In folder **Server** of **semi-uber** use  ```npm i```
+3. In folder **homework3** > **semi-uber** use  ```npm i```
 
-4. In folder **UI** of **semi-uber** use  ```npm i```
-
-5. At file **default.json** set up your settings of your environment
+4. At file **default.json** set up your settings of your environment
 
 specifically:
   - At *webServer* - set your local port and host to run a project
@@ -19,8 +17,5 @@ specifically:
   - At *nodemailer* - choose and set the service of your mailbox, default subject of letter and also your login and password of email account 
   - At *saltRounds* - choose appropriate number of salt rounds to hash user password
 
-6.In file **environment.ts** \(Folder **UI/environment** of **semi-uber** ) - set your local host to run Angular app
 
-7. In folder \(terminal) **Server** print -  ```npm start```
-
-8. In folder \(terminal) UI print - ```ng serve``` \(*your node version should be >=12.0*)
+5. In folder \(terminal) **semi-uber** print -  ```npm start```
